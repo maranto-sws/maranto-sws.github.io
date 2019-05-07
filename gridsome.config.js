@@ -6,5 +6,12 @@
 
 module.exports = {
   siteName: "Maranto’s Sewer & Water Services LLC",
-  plugins: []
+  plugins: [
+    {
+      use: '@gridsome/plugin-google-analytics',
+      options: {
+        id: 'UA-139774435-1'
+      }
+    }
+  ]
 }
