@@ -1,3 +1,6 @@
+language: node_js
+cache:
+  yarn: true
 install: yarn
 before_deploy: yarn run gridsome build
 deploy:
