@@ -1,5 +1,7 @@
 # Default starter for Gridsome
 
+[![Build Status](https://travis-ci.org/maranto-sws/maranto-sws.github.io.svg?branch=develop)](https://travis-ci.org/maranto-sws/maranto-sws.github.io)
+
 ### 1. Install Gridsome CLI tool if you don't have
 
 `npm install --global @gridsome/cli`
