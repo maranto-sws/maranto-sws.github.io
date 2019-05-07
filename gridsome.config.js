@@ -6,6 +6,7 @@
 
 module.exports = {
   siteName: "Maranto’s Sewer & Water Services LLC",
+  siteUrl: 'https://maranto-sws.github.io',
   plugins: [
     {
       use: '@gridsome/plugin-google-analytics',
