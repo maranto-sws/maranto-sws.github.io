@@ -1,14 +1,11 @@
-# Default starter for Gridsome
+# maranto-sws.github.io
 
 [![Build Status](https://travis-ci.org/maranto-sws/maranto-sws.github.io.svg?branch=develop)](https://travis-ci.org/maranto-sws/maranto-sws.github.io)
 
-### 1. Install Gridsome CLI tool if you don't have
+The website for Maranto’s Sewer & Water Services LLC available at [https://maranto-sws.github.io/][website].
 
-`npm install --global @gridsome/cli`
+## About Us
 
-### 2. Create a Gridsome project
+We are located in [Bloomingdale, Illinois](https://en.wikipedia.org/wiki/Bloomingdale,_Illinois).
 
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+[website]: https://maranto-sws.github.io/
