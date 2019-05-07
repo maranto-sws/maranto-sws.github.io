@@ -1,0 +1,11 @@
+install: yarn
+before_deploy: yarn run gridsome build
+deploy:
+  local_dir: dist
+  target_branch: master
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: develop
