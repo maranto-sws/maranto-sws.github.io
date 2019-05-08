@@ -5,7 +5,7 @@
       <p class="tel"><a v-bind:href="phoneNumberUri">{{ phoneNumber }}</a></p>
       <p class="adr">
         <span class="street-address">{{ address.street }}</span><br />
-        <span class="region">{{ address.city }}, {{ address.state }}</span> <span class="postal-code">{{ address.zip }}</span><br />
+        <span class="region">{{ address.city }}, {{ address.state }}</span>&nbsp;<span class="postal-code">{{ address.zip }}</span><br />
         <span class="country-name">{{ address.country }}</span>
       </p>
     </div>
