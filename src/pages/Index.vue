@@ -24,10 +24,6 @@ export default {
         id: 1,
         linkText: "Facebook",
         linkUri: "https://www.facebook.com/Marantos-Sewer-Water-Services-LLC-657508358034475/"
-      }, {
-        id: 2,
-        linkText: "Instagram",
-        linkUri: "https://instagram.com/"
       }]
     }
   },
