@@ -1,8 +1,6 @@
 FROM kkarczmarczyk/node-yarn:latest
-
-WORKDIR /usr/app
-
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 COPY package.json .
 RUN yarn
-
-COPY . .
+COPY . ./
