@@ -6,7 +6,7 @@
 
 module.exports = {
   siteName: "Maranto’s Sewer & Water Services LLC",
-  siteUrl: 'https://maranto-sws.github.io',
+  siteUrl: 'https://www.marantosws.com',
   siteDescription: "If water goes through it, Maranto's can do it!",
   plugins: [
     {
