@@ -22,11 +22,11 @@ export default function (Vue, { router, head, isClient }) {
     })
   })
 
-  head.meta.push({
-    key: 'og:title',
-    property: 'og:title',
-    content: `Maranto’s Sewer & Water Services LLC`,
-  })
+  // head.meta.push({
+  //   key: 'og:title',
+  //   property: 'og:title',
+  //   content: `Maranto’s Sewer & Water Services LLC`,
+  // })
 
   head.meta.push({
     key: 'og:type',
@@ -41,11 +41,11 @@ export default function (Vue, { router, head, isClient }) {
   })
 
   // Open Graph Optional
-  head.meta.push({
-    key: 'og:description',
-    property: 'og:description',
-    content: `Maranto’s Sewer & Water Services LLC`,
-  })
+  // head.meta.push({
+  //   key: 'og:description',
+  //   property: 'og:description',
+  //   content: `Maranto’s Sewer & Water Services LLC`,
+  // })
 
   // Twitter
   // head.meta.push({
