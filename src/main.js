@@ -16,59 +16,59 @@ export default function (Vue, { router, head, isClient }) {
   images.forEach((content) => {
     head.meta.push({
       key: 'og:image',
-      name: 'og:image',
+      property: 'og:image',
       content: content,
     })
   })
 
   head.meta.push({
     key: 'og:title',
-    name: 'og:title',
+    property: 'og:title',
     content: `Maranto’s Sewer & Water Services LLC`,
   })
 
   head.meta.push({
     key: 'og:type',
-    name: 'og:type',
+    property: 'og:type',
     content: 'website',
   })
 
   // head.meta.push({
   //   key: 'og:url',
-  //   name: 'og:url',
+  //   property: 'og:url',
   //   content: `https://www.marantosws.com/`,
   // })
 
   // Open Graph Optional
   // head.meta.push({
   //   key: 'og:description',
-  //   name: 'og:description',
+  //   property: 'og:description',
   //   content: `Maranto’s Sewer & Water Services LLC`,
   // })
 
   // Twitter
   // head.meta.push({
   //   key: 'twitter:card',
-  //   name: 'twitter:card',
+  //   property: 'twitter:card',
   //   content: 'summary',
   // })
 
   // head.meta.push({
   //   key: 'twitter:site',
-  //   name: 'twitter:site',
+  //   property: 'twitter:site',
   //   content: '@RyanBalfanz',
   // })
 
   // head.meta.push({
   //   key: 'twitter:creator',
-  //   name: 'twitter:creator',
+  //   property: 'twitter:creator',
   //   content: '@RyanBalfanz',
   // })
 
   // router.beforeEach((to, _from, next) => {
   //   head.meta.push({
   //     key: 'og:url',
-  //     name: 'og:url',
+  //     property: 'og:url',
   //     content: process.env.GRIDSOME_BASE_PATH + to.path,
   //   })
   //   next()
