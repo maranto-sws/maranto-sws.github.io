@@ -28,17 +28,17 @@ export default function (Vue, { router, head, isClient }) {
   //   content: `Maranto’s Sewer & Water Services LLC`,
   // })
 
-  head.meta.push({
-    key: 'og:type',
-    property: 'og:type',
-    content: 'website',
-  })
+  // head.meta.push({
+  //   key: 'og:type',
+  //   property: 'og:type',
+  //   content: 'website',
+  // })
 
-  head.meta.push({
-    key: 'og:url',
-    property: 'og:url',
-    content: `https://www.marantosws.com/`,
-  })
+  // head.meta.push({
+  //   key: 'og:url',
+  //   property: 'og:url',
+  //   content: `https://www.marantosws.com/`,
+  // })
 
   // Open Graph Optional
   // head.meta.push({
