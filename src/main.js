@@ -27,11 +27,11 @@ export default function (Vue, { router, head, isClient }) {
     content: `Maranto’s Sewer & Water Services LLC`,
   })
 
-  // head.meta.push({
-  //   key: 'og:type',
-  //   name: 'og:type',
-  //   content: 'website',
-  // })
+  head.meta.push({
+    key: 'og:type',
+    name: 'og:type',
+    content: 'website',
+  })
 
   // head.meta.push({
   //   key: 'og:url',
