@@ -11,7 +11,7 @@ export default function (Vue, { router, head, isClient }) {
   // http://ogp.me/
   // https://developers.facebook.com/tools/debug/sharing/?q=marantosws.com
   const images = [
-    'https://imagecdn.app/v1/images/https%3A%2F%2Fimages.unsplash.com%2Fphoto-1538474705339-e87de81450e8%3Fixlib%3Drb-1.2.1%26ixid%3DeyJhcHBfaWQiOjEyMDd9%26auto%3Dformat%26fit%3Dcrop%26w%3D2100%26q%3D80?width=600',
+    'https://github.com/maranto-sws/maranto-sws.github.io/raw/develop/src/assets/logo_on_white_4096x2048.jpg',
   ]
 
   images.forEach((content) => {
