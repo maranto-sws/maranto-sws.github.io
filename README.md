@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/maranto-sws/maranto-sws.github.io.svg?branch=develop)](https://travis-ci.org/maranto-sws/maranto-sws.github.io)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/296e7fd7-2306-4806-8b8e-1b89825d0f9a/deploy-status)](https://app.netlify.com/sites/maranto-sws-github-io/deploys)
 
+![Logo][logo]
+
 **GitHub Pages Site:** [https://maranto-sws.github.io/][website]
 
 This repository contains the source code for the website.
@@ -13,5 +15,6 @@ We are located in [Bloomingdale, Illinois](https://en.wikipedia.org/wiki/Bloomin
 
 Like [our Facebook page][facebook].
 
+[logo]: https://github.com/maranto-sws/maranto-sws.github.io/raw/develop/src/assets/logo_on_white_4096x2048.jpg
 [website]: https://maranto-sws.github.io/
 [facebook]: https://www.facebook.com/Marantos-Sewer-Water-Services-LLC-657508358034475/
