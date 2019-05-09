@@ -21,11 +21,11 @@ export default function (Vue, { router, head, isClient }) {
     })
   })
 
-  // head.meta.push({
-  //   key: 'og:title',
-  //   name: 'og:title',
-  //   content: `Maranto’s Sewer & Water Services LLC`,
-  // })
+  head.meta.push({
+    key: 'og:title',
+    name: 'og:title',
+    content: `Maranto’s Sewer & Water Services LLC`,
+  })
 
   // head.meta.push({
   //   key: 'og:type',
