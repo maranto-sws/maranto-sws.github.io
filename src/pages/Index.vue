@@ -16,19 +16,13 @@
 </template>
 
 <script>
+import social_links from "../../static/social_links.json"
+
 export default {
   data() {
     return {
       slogan: "If water goes through it, Maranto's can do it!",
-      links: [{
-        id: 1,
-        linkText: "Facebook",
-        linkUri: "https://www.facebook.com/Marantos-Sewer-Water-Services-LLC-657508358034475/"
-      }, {
-        id: 2,
-        linkText: "Instagram",
-        linkUri: "https://instagram.com/"
-      }]
+      links: social_links
     }
   },
   metaInfo: {
