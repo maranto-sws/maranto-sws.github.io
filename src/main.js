@@ -34,11 +34,11 @@ export default function (Vue, { router, head, isClient }) {
     content: 'website',
   })
 
-  // head.meta.push({
-  //   key: 'og:url',
-  //   property: 'og:url',
-  //   content: `https://www.marantosws.com/`,
-  // })
+  head.meta.push({
+    key: 'og:url',
+    property: 'og:url',
+    content: `https://www.marantosws.com/`,
+  })
 
   // Open Graph Optional
   head.meta.push({
@@ -66,12 +66,12 @@ export default function (Vue, { router, head, isClient }) {
   //   content: '@RyanBalfanz',
   // })
 
-  router.beforeEach((to, _from, next) => {
-    head.meta.push({
-      key: 'og:url',
-      property: 'og:url',
-      content: process.env.GRIDSOME_BASE_PATH + to.path,
-    })
-    next()
-  })
+  // router.beforeEach((to, _from, next) => {
+  //   head.meta.push({
+  //     key: 'og:url',
+  //     property: 'og:url',
+  //     content: process.env.GRIDSOME_BASE_PATH + to.path,
+  //   })
+  //   next()
+  // })
 }
