@@ -13,6 +13,7 @@ export default function (Vue, { router, head, isClient }) {
   const images = [
     'https://github.com/maranto-sws/maranto-sws.github.io/raw/develop/src/assets/logo_on_white_4096x2048.jpg',
   ]
+  const slogan = 'Maranto’s Sewer & Water Services LLC'
 
   images.forEach((content) => {
     head.meta.push({
@@ -22,17 +23,17 @@ export default function (Vue, { router, head, isClient }) {
     })
   })
 
-  // head.meta.push({
-  //   key: 'og:title',
-  //   property: 'og:title',
-  //   content: `Maranto’s Sewer & Water Services LLC`,
-  // })
+  head.meta.push({
+    key: 'og:title',
+    property: 'og:title',
+    content: slogan,
+  })
 
-  // head.meta.push({
-  //   key: 'og:type',
-  //   property: 'og:type',
-  //   content: 'website',
-  // })
+  head.meta.push({
+    key: 'og:type',
+    property: 'og:type',
+    content: 'website',
+  })
 
   // head.meta.push({
   //   key: 'og:url',
@@ -41,11 +42,11 @@ export default function (Vue, { router, head, isClient }) {
   // })
 
   // Open Graph Optional
-  // head.meta.push({
-  //   key: 'og:description',
-  //   property: 'og:description',
-  //   content: `Maranto’s Sewer & Water Services LLC`,
-  // })
+  head.meta.push({
+    key: 'og:description',
+    property: 'og:description',
+    content: slogan,
+  })
 
   // Twitter
   // head.meta.push({
