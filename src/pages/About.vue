@@ -9,12 +9,16 @@
         <span class="country-name">{{ address.country }}</span>
       </p>
     </div>
+    <div>
+      <iframe v-bind:src="map.src" v-bind:width="map.width" v-bind:height="map.height"></iframe>
+    </div>
   </Layout>
 </template>
 
 <script>
 export default {
   data() {
+    const mapSrc = 'https://www.google.com/maps/d/embed?mid=13b8fRuq3vAolH_nKIZlEtlCYYUFNP9lA'
     const phoneNumber = '16304210091'
 
     // https://stackoverflow.com/a/8358141
@@ -37,6 +41,11 @@ export default {
         state: "IL".toLocaleUpperCase(),
         country: "United States".toLocaleUpperCase(),
         zip: "60108-1611".toLocaleUpperCase()
+      },
+      map: {
+        src: mapSrc,
+        width: 640,
+        height: 480
       }
     }
   },
