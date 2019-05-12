@@ -11,7 +11,7 @@ export default function (Vue, { router, head, isClient }) {
   // http://ogp.me/
   // https://developers.facebook.com/tools/debug/sharing/?q=marantosws.com
   const images = [
-    'https://github.com/maranto-sws/maranto-sws.github.io/raw/develop/src/assets/logo_on_white_4096x2048.jpg',
+    'https://raw.githubusercontent.com/maranto-sws/maranto-sws.github.io/c36529a976969582ad1ae5398fc15950b922da12/src/assets/logo_on_white_4096x2048.jpg',
   ]
   const slogan = 'Maranto’s Sewer & Water Services LLC'
 
