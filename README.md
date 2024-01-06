@@ -1,7 +1,5 @@
 # Maranto’s Sewer & Water Services LLC
 
-[![Build Status](https://travis-ci.org/maranto-sws/maranto-sws.github.io.svg?branch=develop)](https://travis-ci.org/maranto-sws/maranto-sws.github.io)
-
 ![Logo][logo]
 
 **GitHub Pages Site:** [https://maranto-sws.github.io/][website]
