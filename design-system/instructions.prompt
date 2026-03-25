@@ -11,6 +11,7 @@
 
 ## data_sources
 - Always read /design-system/brand.json for business name, phone, address, tagline, and logo before generating any page content.
+- Always read /design-system/reviews.json for customer testimonials. Reviews use a "recommends" flag (not star ratings) since they come from Facebook. Each review has a direct URL — link to it. Use brand.social.facebook_reviews as the "See all recommendations" link.
 
 ## component_specs
 - **TechnicianCard**: Photo on left, "Verified" checkmark, Name, and "Dispatched from [City]" text.
