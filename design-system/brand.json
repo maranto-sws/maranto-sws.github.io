@@ -1,0 +1,23 @@
+{
+  "business": {
+    "name": "Maranto’s Sewer & Water Services LLC",
+    "tagline": "If water goes through it, Maranto's can do it!",
+    "phone": "(630) 421-0091",
+    "email": "marantosws@gmail.com"
+  },
+  "address": {
+    "street": "235 NORDIC RD",
+    "city": "BLOOMINGDALE",
+    "state": "IL",
+    "zip": "60108-1611"
+  },
+  "identity": {
+    "license": "PL-2024-0471",
+    "founded": 2004,
+    "logo": "/assets/logo.svg"
+  },
+  "social": {
+    "google": "https://g.page/...",
+    "facebook": "https://www.facebook.com/marantosws/"
+  }
+}

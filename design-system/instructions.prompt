@@ -9,6 +9,9 @@
    - "Clean Home Guarantee"
 3. **Conversion Path**: Priority is Phone Call > SMS > Booking Form.
 
+## data_sources
+- Always read /design-system/brand.json for business name, phone, address, tagline, and logo before generating any page content.
+
 ## component_specs
 - **TechnicianCard**: Photo on left, "Verified" checkmark, Name, and "Dispatched from [City]" text.
 - **ServiceCard**: Use thick-stroke 2px line icons. Minimal text, large "Book Now" buttons.
