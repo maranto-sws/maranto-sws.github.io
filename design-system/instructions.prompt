@@ -1,0 +1,20 @@
+# Role: Senior Web Architect for Local Services
+# Project: Local Plumbing Business Site
+
+## core_logic
+1. **Urgency First**: The "Panic Button" (Emergency Call) must be persistent on mobile and high-contrast orange.
+2. **Trust Architecture**: Every page must feature a 'Trust Bar' with:
+   - 5-Star Google Rating
+   - Licensed/Insured Badge
+   - "Clean Home Guarantee"
+3. **Conversion Path**: Priority is Phone Call > SMS > Booking Form.
+
+## component_specs
+- **TechnicianCard**: Photo on left, "Verified" checkmark, Name, and "Dispatched from [City]" text.
+- **ServiceCard**: Use thick-stroke 2px line icons. Minimal text, large "Book Now" buttons.
+- **HeroSection**: Background should show a real branded truck. Headline must focus on "Fast Response" or "24/7 Availability."
+
+## technical_constraints
+- Mobile-first design (buttons min-height 44px).
+- Use local SEO Schema.org markup for "PlumbingService".
+- Use the provided tailwind.config.js for all styling.

@@ -1,0 +1,28 @@
+{
+  "branding": {
+    "colors": {
+      "primary": {
+        "value": "#002147",
+        "type": "color",
+        "description": "Deep Navy for Trust"
+      },
+      "action": {
+        "value": "#FF8C00",
+        "type": "color",
+        "description": "Emergency Orange for CTAs"
+      },
+      "surface": {
+        "value": "#F8F9FA",
+        "type": "color",
+        "description": "Light Gray for clean backgrounds"
+      }
+    },
+    "typography": {
+      "headings": { "value": "Montserrat, sans-serif", "type": "fontFamily" },
+      "body": { "value": "Inter, sans-serif", "type": "fontFamily" }
+    },
+    "radius": {
+      "standard": { "value": "8px", "type": "dimension" }
+    }
+  }
+}

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maranto Plumbing – 24/7 Emergency Plumber | Fast Response</title>
+  <meta name="description" content="Licensed & insured plumbers available 24/7. Fast response for emergency leaks, drain clogs, water heaters & more. Call now for same-day service." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN with custom config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy:   '#002147',
+              orange: '#FF8C00',
+              clean:  '#F8F9FA',
+            },
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            plumber: '8px',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #1a1a1a; margin: 0; }
+
+    /* Thick-stroke SVG icon style */
+    .icon-thick { stroke-width: 2px; }
+
+    /* Panic button pulse ring */
+    @keyframes ping-slow {
+      0%   { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    .panic-ring::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: #FF8C00;
+      animation: ping-slow 1.6s ease-out infinite;
+      z-index: -1;
+    }
+
+    /* Hero overlay gradient */
+    .hero-overlay {
+      background: linear-gradient(
+        135deg,
+        rgba(0, 33, 71, 0.88) 0%,
+        rgba(0, 33, 71, 0.60) 60%,
+        rgba(0, 33, 71, 0.30) 100%
+      );
+    }
+
+    /* Sticky emergency header */
+    #emergency-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    /* Minimum tap target */
+    .tap-target { min-height: 44px; min-width: 44px; }
+
+    /* Trust bar gradient */
+    .trust-bar {
+      background: linear-gradient(90deg, #002147 0%, #003070 100%);
+    }
+
+    /* Card hover lift */
+    .card-lift {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,33,71,0.15);
+    }
+
+    /* Form focus ring */
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #FF8C00;
+      outline-offset: 1px;
+    }
+  </style>
+
+  <!-- Schema.org: PlumbingService -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Plumber",
+    "name": "Maranto Plumbing",
+    "image": "https://maranto-sws.github.io/plumbing/og-image.jpg",
+    "url": "https://maranto-sws.github.io/plumbing/",
+    "telephone": "+1-555-PIPE-911",
+    "priceRange": "$$",
+    "openingHours": "Mo-Su 00:00-24:00",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Copper Lane",
+      "addressLocality": "Springfield",
+      "addressRegion": "IL",
+      "postalCode": "62701",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 39.7817,
+      "longitude": -89.6501
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "312"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Plumbing Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Emergency Leak Repair"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Drain Cleaning"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Water Heater Installation"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pipe Repair & Replacement"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fixture Installation"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sewer Line Service"}}
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body class="font-body">
+
+  <!-- ============================================================
+       EMERGENCY HEADER — mobile-first, sticky
+  ============================================================ -->
+  <header id="emergency-header" class="bg-brand-navy shadow-lg">
+
+    <!-- Top emergency strip (mobile-first) -->
+    <div class="bg-brand-orange">
+      <div class="max-w-6xl mx-auto px-4 py-0 flex items-center justify-between gap-2">
+        <span class="text-white font-heading font-bold text-sm tracking-wide uppercase py-2">
+          ⚡ 24/7 Emergency Service Available
+        </span>
+        <!-- Panic Button -->
+        <a href="tel:+15557473911"
+           class="panic-ring relative inline-flex items-center gap-2 bg-white text-brand-orange font-heading font-extrabold text-sm px-4 tap-target rounded-plumber whitespace-nowrap"
+           aria-label="Call for emergency plumbing now">
+          <svg class="w-4 h-4 icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.13 2.9 2 2 0 012.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          CALL NOW
+        </a>
+      </div>
+    </div>
+
+    <!-- Main nav bar -->
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <svg class="w-8 h-8 text-brand-orange icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="18" x2="12" y2="12"/>
+          <line x1="9" y1="15" x2="15" y2="15"/>
+        </svg>
+        <div>
+          <span class="font-heading font-extrabold text-white text-lg leading-none block">MARANTO</span>
+          <span class="font-heading font-semibold text-brand-orange text-xs tracking-widest uppercase">Plumbing</span>
+        </div>
+      </div>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-white/80" aria-label="Main navigation">
+        <a href="#services" class="hover:text-brand-orange transition-colors">Services</a>
+        <a href="#team"     class="hover:text-brand-orange transition-colors">Our Team</a>
+        <a href="#reviews"  class="hover:text-brand-orange transition-colors">Reviews</a>
+        <a href="#booking"  class="hover:text-brand-orange transition-colors">Book Online</a>
+      </nav>
+
+      <!-- Desktop CTA buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="sms:+15557473911?body=Hi%2C%20I%20need%20a%20plumber."
+           class="tap-target inline-flex items-center gap-2 border-2 border-brand-orange text-brand-orange font-heading font-bold text-sm px-4 rounded-plumber hover:bg-brand-orange hover:text-white transition-colors"
+           aria-label="Text us">
+          <svg class="w-4 h-4 icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          Text Us
+        </a>
+        <a href="tel:+15557473911"
+           class="tap-target inline-flex items-center gap-2 bg-brand-orange text-white font-heading font-bold text-sm px-5 rounded-plumber hover:bg-orange-600 transition-colors shadow-md"
+           aria-label="Call Maranto Plumbing">
+          (555) 747-3911
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle"
+              class="md:hidden tap-target flex flex-col justify-center items-center gap-1.5 p-2 text-white"
+              aria-label="Toggle menu" aria-expanded="false">
+        <span class="w-6 h-0.5 bg-current block transition-all" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-current block transition-all" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-current block transition-all" id="bar3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile nav drawer -->
+    <div id="mobile-nav" class="md:hidden hidden bg-brand-navy border-t border-white/10 px-4 pb-4">
+      <nav class="flex flex-col gap-1 pt-3" aria-label="Mobile navigation">
+        <a href="#services" class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Services</a>
+        <a href="#team"     class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Our Team</a>
+        <a href="#reviews"  class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Reviews</a>
+        <a href="#booking"  class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Book Online</a>
+        <div class="flex gap-3 pt-3">
+          <a href="sms:+15557473911?body=Hi%2C%20I%20need%20a%20plumber."
+             class="tap-target flex-1 inline-flex items-center justify-center gap-2 border-2 border-brand-orange text-brand-orange font-heading font-bold text-sm px-4 rounded-plumber">
+            Text Us
+          </a>
+          <a href="tel:+15557473911"
+             class="tap-target flex-1 inline-flex items-center justify-center bg-brand-orange text-white font-heading font-bold text-sm px-4 rounded-plumber">
+            Call Now
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero" class="relative min-h-[520px] md:min-h-[640px] flex items-center overflow-hidden bg-brand-navy"
+           aria-label="Hero section">
+
+    <!-- Background: branded truck illustration (SVG pattern placeholder) -->
+    <div class="absolute inset-0 opacity-20" aria-hidden="true">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+    </div>
+
+    <!-- Decorative truck silhouette -->
+    <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none hidden md:block" aria-hidden="true">
+      <svg width="560" height="320" viewBox="0 0 560 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Truck cab -->
+        <rect x="320" y="100" width="200" height="160" rx="8" fill="white"/>
+        <!-- Truck body -->
+        <rect x="40" y="60" width="300" height="200" rx="8" fill="white"/>
+        <!-- Windshield -->
+        <rect x="330" y="110" width="100" height="80" rx="4" fill="#002147" opacity="0.6"/>
+        <!-- Wheels -->
+        <circle cx="120" cy="270" r="40" fill="#ccc"/>
+        <circle cx="120" cy="270" r="22" fill="white"/>
+        <circle cx="400" cy="270" r="40" fill="#ccc"/>
+        <circle cx="400" cy="270" r="22" fill="white"/>
+        <circle cx="490" cy="270" r="40" fill="#ccc"/>
+        <circle cx="490" cy="270" r="22" fill="white"/>
+        <!-- Company stripe -->
+        <rect x="40" y="160" width="300" height="50" fill="#FF8C00" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <!-- Hero overlay -->
+    <div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
+
+    <!-- Hero content -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24 w-full">
+      <div class="max-w-2xl">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-brand-orange/20 border border-brand-orange/40 text-brand-orange text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+          <span class="w-2 h-2 bg-brand-orange rounded-full animate-pulse"></span>
+          Dispatching Now — Springfield &amp; Surrounding Areas
+        </div>
+
+        <h1 class="font-heading font-extrabold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-5">
+          Fast Plumbing<br />
+          <span class="text-brand-orange">24/7 — Day or Night.</span>
+        </h1>
+
+        <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-8 max-w-lg">
+          Burst pipe, backed-up drain, or no hot water? Our licensed team arrives
+          in under 60 minutes — guaranteed. We clean up when we're done.
+        </p>
+
+        <!-- CTA group -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="tel:+15557473911"
+             class="tap-target inline-flex items-center justify-center gap-3 bg-brand-orange hover:bg-orange-600 text-white font-heading font-bold text-base px-7 py-3.5 rounded-plumber shadow-xl transition-colors"
+             aria-label="Call for emergency plumbing">
+            <svg class="w-5 h-5 icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.13 2.9 2 2 0 012.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            Call (555) 747-3911
+          </a>
+          <a href="#booking"
+             class="tap-target inline-flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-heading font-bold text-base px-7 py-3.5 rounded-plumber transition-colors backdrop-blur-sm">
+            <svg class="w-5 h-5 icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8"  y1="2" x2="8"  y2="6"/>
+              <line x1="3"  y1="10" x2="21" y2="10"/>
+            </svg>
+            Book Online
+          </a>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="flex flex-wrap gap-6 mt-10 text-sm text-white/70">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Under 60-min response</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span>Licensed &amp; Insured</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span>4.9-star rated (312 reviews)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TRUST BAR
+  ============================================================ -->
+  <section id="trust-bar" class="trust-bar py-4 px-4" aria-label="Trust indicators">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-wrap items-center justify-center md:justify-between gap-5 text-white">
+
+        <!-- 5-Star Google Rating -->
+        <div class="flex items-center gap-3">
+          <div class="flex text-brand-orange" aria-label="5 star rating">
+            <!-- 5 stars -->
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-sm leading-none">4.9 Google Rating</p>
+            <p class="text-white/60 text-xs">312 Verified Reviews</p>
+          </div>
+        </div>
+
+        <div class="hidden md:block w-px h-8 bg-white/20" aria-hidden="true"></div>
+
+        <!-- Licensed & Insured Badge -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-sm leading-none">Licensed &amp; Insured</p>
+            <p class="text-white/60 text-xs">State Lic. #PL-2024-0471</p>
+          </div>
+        </div>
+
+        <div class="hidden md:block w-px h-8 bg-white/20" aria-hidden="true"></div>
+
+        <!-- Clean Home Guarantee -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-sm leading-none">Clean Home Guarantee</p>
+            <p class="text-white/60 text-xs">We tarp, protect &amp; clean up — always</p>
+          </div>
+        </div>
+
+        <div class="hidden md:block w-px h-8 bg-white/20" aria-hidden="true"></div>
+
+        <!-- Upfront pricing -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-heading font-bold text-sm leading-none">Upfront Pricing</p>
+            <p class="text-white/60 text-xs">No hidden fees, ever</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SERVICES GRID
+  ============================================================ -->
+  <section id="services" class="bg-brand-clean py-16 px-4" aria-labelledby="services-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">What We Fix</p>
+        <h2 id="services-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
+          Full-Service Plumbing
+        </h2>
+        <p class="text-gray-600 mt-3 max-w-md mx-auto">From emergencies to planned upgrades — one call handles it all.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Service Card: Emergency Leaks -->
+        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Emergency Leak Repair</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Burst pipe, slab leak, or active flooding — we stop the damage fast, any hour.</p>
+          </div>
+          <a href="tel:+15557473911"
+             class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-white font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
+            Book Now
+          </a>
+        </article>
+
+        <!-- Service Card: Drain Cleaning -->
+        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8"  x2="12" y2="16"/>
+              <line x1="8"  y1="12" x2="16" y2="12"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Drain Cleaning</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Slow drains, clogs, or backed-up sewer lines — hydro-jetting &amp; snaking available.</p>
+          </div>
+          <a href="#booking"
+             class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-white font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
+            Book Now
+          </a>
+        </article>
+
+        <!-- Service Card: Water Heater -->
+        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-5.33 4-8 8-8 12a8 8 0 0016 0c0-4-2.67-8-8-12z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Water Heater Service</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Installation, repair, and replacement of tank &amp; tankless water heaters — same day.</p>
+          </div>
+          <a href="#booking"
+             class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-white font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
+            Book Now
+          </a>
+        </article>
+
+        <!-- Service Card: Pipe Repair -->
+        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Pipe Repair &amp; Repiping</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Corroded, leaking, or frozen pipes replaced with durable copper or PEX.</p>
+          </div>
+          <a href="#booking"
+             class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-white font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
+            Book Now
+          </a>
+        </article>
+
+        <!-- Service Card: Fixtures -->
+        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Fixture Installation</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Faucets, toilets, showers, and garbage disposals installed right the first time.</p>
+          </div>
+          <a href="#booking"
+             class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-white font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
+            Book Now
+          </a>
+        </article>
+
+        <!-- Service Card: Sewer Line -->
+        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Sewer Line Service</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Camera inspection, root clearing, and trenchless sewer line repair or replacement.</p>
+          </div>
+          <a href="#booking"
+             class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-white font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
+            Book Now
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       REVIEWS / SOCIAL PROOF
+  ============================================================ -->
+  <section id="reviews" class="bg-white py-16 px-4" aria-labelledby="reviews-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">What Customers Say</p>
+        <h2 id="reviews-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
+          Trusted by Your Neighbors
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Review 1 -->
+        <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="flex text-brand-orange" aria-label="5 stars">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed flex-1">"Pipe burst at 2am — they were at my door in 45 minutes. Incredibly professional, and they left my kitchen spotless. Won't call anyone else."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">JK</div>
+            <div>
+              <p class="font-semibold text-brand-navy text-sm leading-none">Jennifer K.</p>
+              <p class="text-gray-400 text-xs">Springfield, IL — Google Review</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Review 2 -->
+        <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="flex text-brand-orange" aria-label="5 stars">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed flex-1">"New water heater installed same day I called. The tech walked me through everything and gave me a fair price up front. Highly recommended."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">MT</div>
+            <div>
+              <p class="font-semibold text-brand-navy text-sm leading-none">Marcus T.</p>
+              <p class="text-gray-400 text-xs">Chatham, IL — Google Review</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Review 3 -->
+        <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4">
+          <div class="flex text-brand-orange" aria-label="5 stars">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed flex-1">"Used them for a sewer camera inspection before buying a house. Super thorough, on time, and their report saved me from a $12k mistake. Worth every penny."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">SR</div>
+            <div>
+              <p class="font-semibold text-brand-navy text-sm leading-none">Sandra R.</p>
+              <p class="text-gray-400 text-xs">Rochester, IL — Google Review</p>
+            </div>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TECHNICIAN CARDS
+  ============================================================ -->
+  <section id="team" class="bg-brand-clean py-16 px-4" aria-labelledby="team-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">Who's Coming to Your Door</p>
+        <h2 id="team-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
+          Your Verified Technicians
+        </h2>
+        <p class="text-gray-600 mt-3 max-w-md mx-auto">Background-checked, licensed, and dispatched from your area.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Tech Card 1 -->
+        <article class="bg-white rounded-plumber shadow-sm border border-gray-100 card-lift overflow-hidden flex flex-col sm:flex-row gap-0">
+          <!-- Photo placeholder (left) -->
+          <div class="sm:w-28 shrink-0 bg-brand-navy flex items-center justify-center p-4">
+            <div class="w-16 h-16 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center">
+              <svg class="w-8 h-8 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+          </div>
+          <!-- Info -->
+          <div class="p-4 flex flex-col justify-center gap-1">
+            <div class="flex items-center gap-2">
+              <p class="font-heading font-bold text-brand-navy text-base leading-none">Dave Kowalski</p>
+              <span class="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full border border-green-200">
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                Verified
+              </span>
+            </div>
+            <p class="text-gray-500 text-xs">Master Plumber · 14 yrs exp.</p>
+            <p class="text-brand-orange text-xs font-semibold mt-1">Dispatched from Springfield, IL</p>
+          </div>
+        </article>
+
+        <!-- Tech Card 2 -->
+        <article class="bg-white rounded-plumber shadow-sm border border-gray-100 card-lift overflow-hidden flex flex-col sm:flex-row gap-0">
+          <div class="sm:w-28 shrink-0 bg-brand-navy flex items-center justify-center p-4">
+            <div class="w-16 h-16 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center">
+              <svg class="w-8 h-8 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="p-4 flex flex-col justify-center gap-1">
+            <div class="flex items-center gap-2">
+              <p class="font-heading font-bold text-brand-navy text-base leading-none">Maria Delgado</p>
+              <span class="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full border border-green-200">
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                Verified
+              </span>
+            </div>
+            <p class="text-gray-500 text-xs">Journeyman Plumber · 8 yrs exp.</p>
+            <p class="text-brand-orange text-xs font-semibold mt-1">Dispatched from Chatham, IL</p>
+          </div>
+        </article>
+
+        <!-- Tech Card 3 -->
+        <article class="bg-white rounded-plumber shadow-sm border border-gray-100 card-lift overflow-hidden flex flex-col sm:flex-row gap-0">
+          <div class="sm:w-28 shrink-0 bg-brand-navy flex items-center justify-center p-4">
+            <div class="w-16 h-16 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center">
+              <svg class="w-8 h-8 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="p-4 flex flex-col justify-center gap-1">
+            <div class="flex items-center gap-2">
+              <p class="font-heading font-bold text-brand-navy text-base leading-none">Tom Whitfield</p>
+              <span class="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full border border-green-200">
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                Verified
+              </span>
+            </div>
+            <p class="text-gray-500 text-xs">Master Plumber · 21 yrs exp.</p>
+            <p class="text-brand-orange text-xs font-semibold mt-1">Dispatched from Rochester, IL</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       BOOKING FORM
+  ============================================================ -->
+  <section id="booking" class="bg-brand-navy py-16 px-4" aria-labelledby="booking-heading">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">Skip the Hold Music</p>
+        <h2 id="booking-heading" class="font-heading font-extrabold text-white text-3xl md:text-4xl">
+          Book Online in 60 Seconds
+        </h2>
+        <p class="text-white/60 mt-3">We'll confirm your appointment within 15 minutes.</p>
+      </div>
+
+      <form class="bg-white rounded-plumber shadow-2xl p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-5"
+            action="#" method="post" aria-label="Plumbing booking form"
+            onsubmit="return handleBooking(event)">
+
+        <div class="flex flex-col gap-1">
+          <label for="name" class="text-sm font-semibold text-brand-navy">Full Name <span class="text-brand-orange">*</span></label>
+          <input id="name" type="text" name="name" required placeholder="Jane Smith"
+                 class="tap-target border border-gray-200 rounded-plumber px-4 text-sm text-gray-700 placeholder-gray-400" />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="phone" class="text-sm font-semibold text-brand-navy">Phone Number <span class="text-brand-orange">*</span></label>
+          <input id="phone" type="tel" name="phone" required placeholder="(555) 000-0000"
+                 class="tap-target border border-gray-200 rounded-plumber px-4 text-sm text-gray-700 placeholder-gray-400" />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="address" class="text-sm font-semibold text-brand-navy">Service Address <span class="text-brand-orange">*</span></label>
+          <input id="address" type="text" name="address" required placeholder="123 Main St, Springfield"
+                 class="tap-target border border-gray-200 rounded-plumber px-4 text-sm text-gray-700 placeholder-gray-400" />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="service" class="text-sm font-semibold text-brand-navy">Service Type <span class="text-brand-orange">*</span></label>
+          <select id="service" name="service" required
+                  class="tap-target border border-gray-200 rounded-plumber px-4 text-sm text-gray-700 bg-white appearance-none">
+            <option value="" disabled selected>Select a service…</option>
+            <option value="emergency">🚨 Emergency Leak Repair</option>
+            <option value="drain">Drain Cleaning</option>
+            <option value="water-heater">Water Heater</option>
+            <option value="pipes">Pipe Repair / Repiping</option>
+            <option value="fixture">Fixture Installation</option>
+            <option value="sewer">Sewer Line Service</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-1 sm:col-span-2">
+          <label for="details" class="text-sm font-semibold text-brand-navy">Describe the Problem</label>
+          <textarea id="details" name="details" rows="3" placeholder="e.g. Kitchen sink has been slow for 2 weeks, water pooling under cabinet…"
+                    class="border border-gray-200 rounded-plumber px-4 py-3 text-sm text-gray-700 placeholder-gray-400 resize-none"></textarea>
+        </div>
+
+        <div class="sm:col-span-2">
+          <button type="submit"
+                  class="tap-target w-full bg-brand-orange hover:bg-orange-600 text-white font-heading font-extrabold text-base px-6 py-4 rounded-plumber shadow-lg transition-colors tracking-wide">
+            Request My Appointment →
+          </button>
+          <p class="text-center text-gray-400 text-xs mt-3">
+            Need it <em>right now?</em>
+            <a href="tel:+15557473911" class="text-brand-orange font-semibold hover:underline">Call (555) 747-3911</a>
+            — we answer 24/7.
+          </p>
+        </div>
+
+      </form>
+
+      <!-- Success message (hidden by default) -->
+      <div id="booking-success" class="hidden mt-6 bg-green-50 border border-green-200 rounded-plumber p-5 text-center">
+        <p class="text-green-700 font-heading font-bold text-lg mb-1">✓ Booking Received!</p>
+        <p class="text-green-600 text-sm">We'll call or text you within 15 minutes to confirm your appointment.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="bg-gray-900 text-white/60 py-10 px-4" role="contentinfo">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row gap-8 justify-between mb-8">
+
+        <!-- Brand column -->
+        <div class="max-w-xs">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-6 h-6 text-brand-orange icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <span class="font-heading font-extrabold text-white text-base">MARANTO PLUMBING</span>
+          </div>
+          <p class="text-sm leading-relaxed">Serving Springfield and surrounding communities since 2004. Licensed, insured, and available 24/7.</p>
+          <p class="text-brand-orange font-semibold text-sm mt-3">State Lic. #PL-2024-0471</p>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <h3 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-3">Services</h3>
+          <ul class="flex flex-col gap-2 text-sm">
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Emergency Leaks</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Drain Cleaning</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Water Heaters</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Pipe Repair</a></li>
+            <li><a href="#services" class="hover:text-brand-orange transition-colors">Sewer Lines</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-3">Contact</h3>
+          <ul class="flex flex-col gap-3 text-sm">
+            <li>
+              <a href="tel:+15557473911" class="flex items-center gap-2 hover:text-brand-orange transition-colors">
+                <svg class="w-4 h-4 text-brand-orange icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.13 2.9 2 2 0 012.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                (555) 747-3911
+              </a>
+            </li>
+            <li>
+              <a href="sms:+15557473911" class="flex items-center gap-2 hover:text-brand-orange transition-colors">
+                <svg class="w-4 h-4 text-brand-orange icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+                Text Us
+              </a>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-brand-orange icon-thick shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>123 Copper Lane<br />Springfield, IL 62701</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
+        <p>© 2024 Maranto Plumbing. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    toggle.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('hidden') === false;
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    // Close mobile nav when a link is clicked
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Smooth-scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Booking form mock submit
+    function handleBooking(e) {
+      e.preventDefault();
+      document.querySelector('#booking form').classList.add('hidden');
+      document.getElementById('booking-success').classList.remove('hidden');
+      return false;
+    }
+  </script>
+
+</body>
+</html>
