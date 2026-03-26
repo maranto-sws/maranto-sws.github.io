@@ -8,5 +8,5 @@
 # This file codifies the output directory so it is version-controlled
 # and cannot accidentally drift from what the build script produces.
 
-name = "maranto-sws"
+name = "maranto-sws-github-io"
 pages_build_output_dir = "dist"
