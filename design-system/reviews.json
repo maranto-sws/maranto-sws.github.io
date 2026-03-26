@@ -37,7 +37,8 @@
     "recommends": true,
     "date": "2019-05-09",
     "platform": "Facebook",
-    "url": ""
+    "url": "",
+    "hidden": true
   },
   {
     "author": "Damian Swierbutowskii",
