@@ -16,8 +16,8 @@ const { test, expect } = require('@playwright/test');
 const LICENSE = 'PL-2024-0471';
 
 test.describe('License number guard', () => {
-  test('homepage (/plumbing/) displays the license number', async ({ page }) => {
-    await page.goto('/plumbing/');
+  test('homepage (/) displays the license number', async ({ page }) => {
+    await page.goto('/');
     await expect(page.getByText(LICENSE, { exact: false })).toBeVisible();
   });
 
