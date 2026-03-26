@@ -6,10 +6,8 @@
     "email": "marantosws@gmail.com"
   },
   "address": {
-    "street": "235 NORDIC RD",
     "city": "BLOOMINGDALE",
     "state": "IL",
-    "zip": "60108-1611",
     "hidden": true
   },
   "identity": {
