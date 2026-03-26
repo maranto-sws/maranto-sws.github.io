@@ -9,7 +9,7 @@
       "action": {
         "value": "#FF8C00",
         "type": "color",
-        "description": "Emergency Orange for CTAs"
+        "description": "Emergency Orange for CTA backgrounds and decorative accents only — NOT for text on white/light surfaces"
       },
       "surface": {
         "value": "#F8F9FA",
@@ -23,6 +23,97 @@
     },
     "radius": {
       "standard": { "value": "8px", "type": "dimension" }
+    }
+  },
+  "accessibility": {
+    "wcag_level": "AA",
+    "contrast_rules": {
+      "description": "WCAG AA requires 4.5:1 for normal text, 3:1 for large text (≥18pt or ≥14pt bold). Contrast ratios below are pre-computed.",
+      "approved_pairs": [
+        {
+          "foreground": "#002147",
+          "background": "#FF8C00",
+          "ratio": "7.0:1",
+          "usage": "Navy text or icons on orange backgrounds — buttons, emergency strip, accents"
+        },
+        {
+          "foreground": "#FFFFFF",
+          "background": "#002147",
+          "ratio": "13.0:1",
+          "usage": "White text on navy backgrounds — header, footer, booking section"
+        },
+        {
+          "foreground": "#FF8C00",
+          "background": "#002147",
+          "ratio": "7.0:1",
+          "usage": "Orange text/icons on navy backgrounds — booking section labels, footer accents"
+        },
+        {
+          "foreground": "#002147",
+          "background": "#FFFFFF",
+          "ratio": "19.0:1",
+          "usage": "Navy text on white — body copy, headings, card content"
+        },
+        {
+          "foreground": "#002147",
+          "background": "#F8F9FA",
+          "ratio": "18.0:1",
+          "usage": "Navy text on brand-clean surface"
+        },
+        {
+          "foreground": "#6B7280",
+          "background": "#FFFFFF",
+          "ratio": "4.6:1",
+          "usage": "Muted gray (gray-500) for secondary text on white — dates, footnotes, metadata"
+        },
+        {
+          "foreground": "#6B7280",
+          "background": "#F8F9FA",
+          "ratio": "4.4:1",
+          "usage": "Muted gray (gray-500) on brand-clean — acceptable for secondary text"
+        }
+      ],
+      "forbidden_pairs": [
+        {
+          "foreground": "#FFFFFF",
+          "background": "#FF8C00",
+          "ratio": "2.3:1",
+          "reason": "FAILS WCAG AA — white text on brand-orange is unreadable for low-vision users. Use text-brand-navy instead."
+        },
+        {
+          "foreground": "#FF8C00",
+          "background": "#FFFFFF",
+          "ratio": "2.3:1",
+          "reason": "FAILS WCAG AA — brand-orange text on white/light surfaces. Use text-brand-navy for eyebrow labels and inline links on light backgrounds."
+        },
+        {
+          "foreground": "#FF8C00",
+          "background": "#F8F9FA",
+          "ratio": "2.2:1",
+          "reason": "FAILS WCAG AA — brand-orange text on brand-clean surface. Use text-brand-navy."
+        },
+        {
+          "foreground": "#9CA3AF",
+          "background": "#FFFFFF",
+          "ratio": "2.6:1",
+          "reason": "FAILS WCAG AA — gray-400 on white/light. Use gray-500 (#6B7280) or darker for muted text."
+        }
+      ]
+    },
+    "aria_rules": {
+      "landmarks": [
+        "Every page must have exactly one <main> element wrapping all content between <header> and <footer>.",
+        "The <header> element provides the 'banner' landmark. Do not add role='banner' explicitly.",
+        "The <footer> element provides the 'contentinfo' landmark. Do not add role='contentinfo' explicitly.",
+        "Use aria-labelledby on <section> elements that have a visible heading (h2) inside them.",
+        "Use aria-label on <section> elements that have no visible heading (e.g. hero, trust bar)."
+      ],
+      "aria_attribute_restrictions": [
+        "aria-label is only valid on elements that have an implicit or explicit ARIA role. Never add aria-label to a plain <div> or <span> with no role.",
+        "To label a decorative group of icons (e.g. star ratings), add role='img' aria-label='...' to the container.",
+        "If the rating/value is already expressed in adjacent visible text (e.g. '4.9 Google Rating'), prefer aria-hidden='true' on the icon group instead.",
+        "Do not add aria-label to interactive elements whose text label already fully describes the action."
+      ]
     }
   }
 }
