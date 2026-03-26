@@ -559,27 +559,48 @@
   <!-- ============================================================
        REVIEWS / SOCIAL PROOF
   ============================================================ -->
-  <section id="reviews" class="bg-white py-16 px-4" aria-labelledby="reviews-heading">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">What Customers Say</p>
-        <h2 id="reviews-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
-          Trusted by Your Neighbors
-        </h2>
+  <section id="reviews" class="bg-white py-16" aria-labelledby="reviews-heading">
+
+    <!-- Heading row + desktop prev/next arrows -->
+    <div class="max-w-6xl mx-auto px-4 mb-10">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">What Customers Say</p>
+          <h2 id="reviews-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
+            Trusted by Your Neighbors
+          </h2>
+        </div>
+        <div class="hidden md:flex items-center gap-2 shrink-0 pb-1">
+          <button id="reviews-prev" aria-label="Previous review"
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-brand-navy hover:text-brand-orange hover:border-brand-orange transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button id="reviews-next" aria-label="Next review"
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-brand-navy hover:text-brand-orange hover:border-brand-orange transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    </div>
+
+    <!-- Carousel — left edge aligns with page content column; right overflows to hint more cards -->
+    <div style="overflow-x:hidden;">
+      <div id="reviews-track"
+           class="flex gap-4 pb-6"
+           style="overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:max(1rem,calc((100vw - 72rem)/2 + 1rem));padding-right:1rem;">
 
         <!-- Patricia Sokolowski — September 2025 -->
         <a href="https://www.facebook.com/patricia.sokolowski.77/posts/pfbid031V9bse4hffuDY5nSddDvu9HcPGmEwNas87iZr77oB2NmHpfPmvoagsnDBGq8F8tAl"
-           target="_blank" rel="noopener noreferrer" class="block">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full">
+           target="_blank" rel="noopener noreferrer"
+           class="snap-start shrink-0 w-[80vw] md:w-64 flex">
+          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
               <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Giuseppe was very knowledgeable and thorough. I called him and just by explaining my problem he knew exactly what it was. He was out within the hour and the problem was fixed very fast. I would for sure recommend him to anyone with plumbing issues."</p>
+            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Giuseppe was very knowledgeable and thorugh. I called him and just by explaining my problem he knew ezactly what it was. He was out within the hour and the problem was fixed very fast. I would for sure recommend him to anyone with plumbing issues."</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">PS</div>
               <div>
@@ -592,15 +613,16 @@
 
         <!-- Jason Kell — October 2024 -->
         <a href="https://www.facebook.com/J.Moe320/posts/pfbid0SahkqEyFqYTFFXVC5C9S2Ak2YzqW8Rv6KehYWsEui14FmK9SGrwri6hy9Go84Qkrl"
-           target="_blank" rel="noopener noreferrer" class="block">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full">
+           target="_blank" rel="noopener noreferrer"
+           class="snap-start shrink-0 w-[80vw] md:w-64 flex">
+          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
               <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Best in the business!! We have been using Maranto's for several years now. He has affordable pricing and the work is TOP QUALITY. Trust his word and he has very honest pricing. If you have found this review there is no need to keep looking for a company."</p>
+            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Best in the business!! We have been using Maranto's for several years now . He has affordable pricing and the work is TOP QUALITY. Trust his word and he has Very honest pricing. If you have found this review there is no need to keep looking for a company."</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">JK</div>
               <div>
@@ -613,8 +635,9 @@
 
         <!-- Michael Francis — November 2023 -->
         <a href="https://www.facebook.com/michael.francis.785519/posts/pfbid027UL3H9GQPMk1UkVKf26ey98LBAEwCQihvkfMUWmikH3eBA7W7yGNrUyNb2JEv3kyl"
-           target="_blank" rel="noopener noreferrer" class="block">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full">
+           target="_blank" rel="noopener noreferrer"
+           class="snap-start shrink-0 w-[80vw] md:w-64 flex">
+          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
               <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -632,19 +655,93 @@
           </blockquote>
         </a>
 
-      </div>
+        <!-- Rainy Flores — May 2019 -->
+        <div class="snap-start shrink-0 w-[80vw] md:w-64 flex">
+          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Recommends on Facebook
+              </span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Giuseppe was very professional came to fix our hose bib replacement I recommend him to everyone 🙂"</p>
+            <footer class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">RF</div>
+              <div>
+                <p class="font-semibold text-brand-navy text-sm leading-none">Rainy Flores</p>
+                <p class="text-gray-400 text-xs">May 2019</p>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
 
-      <!-- See all link -->
-      <div class="text-center mt-10">
-        <a href="https://www.facebook.com/marantosws/reviews/"
-           target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-2 text-brand-navy font-semibold text-sm hover:text-brand-orange transition-colors">
-          See all recommendations on Facebook
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
+        <!-- Damian Swierbutowskii — May 2019 -->
+        <div class="snap-start shrink-0 w-[80vw] md:w-64 flex">
+          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Recommends on Facebook
+              </span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Great people to do business with. Very fast response and got the job done the next day. Called 3 places and Giuseppe was the first one to respond with exact details. Next time won't call anyone else. Thanks for the awesome work!!"</p>
+            <footer class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">DS</div>
+              <div>
+                <p class="font-semibold text-brand-navy text-sm leading-none">Damian Swierbutowskii</p>
+                <p class="text-gray-400 text-xs">May 2019</p>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
 
+        <!-- Daryl Palumbo O'Leary — May 2019 -->
+        <div class="snap-start shrink-0 w-[80vw] md:w-64 flex">
+          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Recommends on Facebook
+              </span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Giuseppe installed our back-up sump. He was on time, very professional and knowledgeable, and fair. Great job and I highly recommend. Five-star service"</p>
+            <footer class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">DP</div>
+              <div>
+                <p class="font-semibold text-brand-navy text-sm leading-none">Daryl Palumbo O'Leary</p>
+                <p class="text-gray-400 text-xs">May 2019</p>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+
+      </div>
     </div>
+
+    <!-- See all link -->
+    <div class="max-w-6xl mx-auto px-4 text-center mt-8">
+      <a href="https://www.facebook.com/marantosws/reviews/"
+         target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 text-brand-navy font-semibold text-sm hover:text-brand-orange transition-colors">
+        See all recommendations on Facebook
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <script>
+      (function () {
+        var track = document.getElementById('reviews-track');
+        var card  = track.querySelector(':scope > *');
+        function step() { return card.offsetWidth + 16; } /* gap-4 = 16px */
+        document.getElementById('reviews-prev').addEventListener('click', function () {
+          track.scrollBy({ left: -step(), behavior: 'smooth' });
+        });
+        document.getElementById('reviews-next').addEventListener('click', function () {
+          track.scrollBy({ left: step(), behavior: 'smooth' });
+        });
+      })();
+    </script>
+
   </section>
 
 
