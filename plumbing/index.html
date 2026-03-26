@@ -584,7 +584,9 @@
     </div>
 
     <!-- Carousel — clipped at max-w-6xl boundary (1152px) so peek is consistent at any viewport width -->
-    <div class="max-w-6xl mx-auto overflow-hidden pb-4">
+    <div class="max-w-6xl mx-auto overflow-hidden pb-4 relative">
+      <!-- Soft fade hints there are more cards without a hard clip -->
+      <div class="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" aria-hidden="true"></div>
       <div id="reviews-track"
            class="flex gap-4 pb-2"
            style="overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:1rem;padding-right:1rem;">
