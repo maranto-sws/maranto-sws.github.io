@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200" role="img" aria-label="Maranto's Sewer &amp; Water Services LLC">
+  <!-- PLACEHOLDER: Replace this file with the real business logo. -->
+  <!-- Dimensions and viewBox can change to match the real asset.  -->
+  <rect width="400" height="200" fill="#002147" rx="8"/>
+  <text
+    x="200" y="90"
+    font-family="Montserrat, sans-serif"
+    font-weight="700"
+    font-size="28"
+    fill="#FF8C00"
+    text-anchor="middle"
+    dominant-baseline="middle">Maranto's</text>
+  <text
+    x="200" y="130"
+    font-family="Montserrat, sans-serif"
+    font-weight="600"
+    font-size="16"
+    fill="#ffffff"
+    text-anchor="middle"
+    dominant-baseline="middle">Sewer &amp; Water Services</text>
+</svg>
