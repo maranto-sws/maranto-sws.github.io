@@ -585,8 +585,9 @@
 
     <!-- Carousel — clipped at max-w-6xl boundary (1152px) so peek is consistent at any viewport width -->
     <div class="max-w-6xl mx-auto overflow-hidden pb-4 relative">
-      <!-- Soft fade hints there are more cards without a hard clip -->
-      <div class="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" aria-hidden="true"></div>
+      <!-- Fade overlays — JS toggles opacity based on scroll position -->
+      <div id="reviews-fade-left"  class="absolute left-0  top-0 bottom-4 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10 transition-opacity duration-200 opacity-0" aria-hidden="true"></div>
+      <div id="reviews-fade-right" class="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 transition-opacity duration-200" aria-hidden="true"></div>
       <div id="reviews-track"
            class="flex gap-4 pb-2"
            style="overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:1rem;padding-right:1rem;">
@@ -732,9 +733,22 @@
 
     <script>
       (function () {
-        var track = document.getElementById('reviews-track');
-        var card  = track.querySelector(':scope > *');
+        var track      = document.getElementById('reviews-track');
+        var fadeLeft   = document.getElementById('reviews-fade-left');
+        var fadeRight  = document.getElementById('reviews-fade-right');
+        var card       = track.querySelector(':scope > *');
         function step() { return card.offsetWidth + 16; } /* gap-4 = 16px */
+
+        function updateFades() {
+          var atStart = track.scrollLeft < 8;
+          var atEnd   = track.scrollLeft >= track.scrollWidth - track.clientWidth - 8;
+          fadeLeft.style.opacity  = atStart ? '0' : '1';
+          fadeRight.style.opacity = atEnd   ? '0' : '1';
+        }
+
+        track.addEventListener('scroll', updateFades, { passive: true });
+        updateFades();
+
         document.getElementById('reviews-prev').addEventListener('click', function () {
           track.scrollBy({ left: -step(), behavior: 'smooth' });
         });
