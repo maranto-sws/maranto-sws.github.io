@@ -3,6 +3,7 @@
   "private": true,
   "description": "Test suite for maranto-sws.github.io — behavioral, a11y, visual regression, and content integrity",
   "scripts": {
+    "build": "bash scripts/build.sh",
     "test": "node tests/content-integrity.js && playwright test",
     "test:content": "node tests/content-integrity.js",
     "test:behavioral": "playwright test --grep-invert \"Visual Regression\"",

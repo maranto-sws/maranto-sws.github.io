@@ -49,4 +49,29 @@ If something should always be true going forward (a new rule, a new component pa
 
 ## Site Structure
 
-The main homepage lives at `plumbing/index.html`. It is a single self-contained HTML file using Tailwind CDN — no build step required. Open it directly in a browser or push to GitHub Pages to see changes live.
+The main homepage lives at `index.html` at the repo root. It is a single self-contained HTML file using Tailwind CDN — no framework build required.
+
+## Build Pipeline
+
+A minimal build script at `scripts/build.sh` copies only public-facing files (`index.html`, `404.html`, `assets/`, `robots.txt`, `humans.txt`, `CNAME`, `sitemap.xml`) into a `dist/` directory. Internal files like `design-system/`, `CLAUDE.md`, `AGENTS.md`, `tests/`, and `scripts/` are intentionally excluded from the deployed output.
+
+Run the build locally with:
+
+```
+npm run build
+# or
+bash scripts/build.sh
+```
+
+### GitHub Pages
+
+Deployment is automated via `.github/workflows/deploy.yml`. On every push to `main`, the workflow runs the build script and deploys `dist/` using the GitHub Pages Actions API.
+
+### Cloudflare Pages
+
+Cloudflare Pages requires manual configuration in the Cloudflare Pages dashboard — it cannot be set via code in this repo. Configure the project with:
+
+- **Build command:** `bash scripts/build.sh`
+- **Build output directory:** `dist`
+
+No framework preset is needed. Leave the framework field blank or set it to "None".
