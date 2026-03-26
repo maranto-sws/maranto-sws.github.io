@@ -6,6 +6,10 @@
   <title>Maranto's Sewer &amp; Water Services – 24/7 Emergency Service | Bloomingdale, IL</title>
   <meta name="description" content="Licensed &amp; insured sewer and water specialists serving Bloomingdale, IL and surrounding areas. Fast 24/7 response for leaks, drains, water heaters &amp; more. Call (630) 421-0091." />
 
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+
   <!-- Fonts: preconnect then load non-blocking to avoid render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -100,6 +104,18 @@
       outline: 2px solid #FF8C00;
       outline-offset: 1px;
     }
+
+    /* Scroll offset — compensates for sticky double-row header
+       Mobile: emergency strip (~36px) + nav bar (~56px) ≈ 92px → 100px with buffer
+       Desktop: same rows, extra buffer for breathing room */
+    section[id] {
+      scroll-margin-top: 100px;
+    }
+    @media (min-width: 768px) {
+      section[id] {
+        scroll-margin-top: 112px;
+      }
+    }
   </style>
 
   <!-- Schema.org: PlumbingService -->
@@ -109,8 +125,8 @@
     "@type": "Plumber",
     "name": "Maranto's Sewer & Water Services LLC",
     "image": "https://maranto-sws.github.io/plumbing/og-image.jpg",
-    "url": "https://maranto-sws.github.io/plumbing/",
-    "telephone": "+16304210091",
+    "url": "https://www.marantosws.com",
+    "telephone": "(630) 421-0091",
     "email": "marantosws@gmail.com",
     "priceRange": "$$",
     "openingHours": "Mo-Su 00:00-24:00",
@@ -131,6 +147,16 @@
       "@type": "AggregateRating",
       "ratingValue": "4.9",
       "reviewCount": "312"
+    },
+    "license": "PL-2024-0471",
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.9478,
+        "longitude": -88.0823
+      },
+      "geoRadius": "30000"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -175,8 +201,8 @@
 
     <!-- Main nav bar -->
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-      <!-- Logo -->
-      <div class="flex items-center gap-2">
+      <!-- Logo — links back to top of page -->
+      <a href="#" class="flex items-center gap-2 no-underline" aria-label="Maranto's Sewer &amp; Water Services — back to top">
         <svg class="w-8 h-8 text-brand-orange icon-thick shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
           <polyline points="14 2 14 8 20 8"/>
@@ -187,7 +213,7 @@
           <span class="font-heading font-extrabold text-white text-lg leading-none block">MARANTO'S</span>
           <span class="font-heading font-semibold text-brand-orange text-xs tracking-widest uppercase">Sewer &amp; Water</span>
         </div>
-      </div>
+      </a>
 
       <!-- Desktop nav links -->
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-white/80" aria-label="Main navigation">
@@ -1022,7 +1048,7 @@
       </div>
 
       <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
-        <p>© 2024 Maranto's Sewer &amp; Water Services LLC. All rights reserved.</p>
+        <p>© <script>document.write(new Date().getFullYear())</script> Maranto's Sewer &amp; Water Services LLC. All rights reserved.</p>
         <div class="flex gap-4">
           <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
           <a href="#" class="hover:text-brand-orange transition-colors">Terms of Service</a>
