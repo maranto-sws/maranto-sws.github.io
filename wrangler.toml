@@ -1,0 +1,12 @@
+# Cloudflare Pages configuration
+# https://developers.cloudflare.com/pages/configuration/wrangler-configuration/
+#
+# NOTE: The build command (bash scripts/build.sh) must still be set manually
+# in the Cloudflare Pages dashboard under:
+#   Settings → Builds & deployments → Build configuration → Build command
+#
+# This file codifies the output directory so it is version-controlled
+# and cannot accidentally drift from what the build script produces.
+
+name = "maranto-sws-github-io"
+pages_build_output_dir = "dist"
