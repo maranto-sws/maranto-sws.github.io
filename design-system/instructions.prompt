@@ -13,6 +13,29 @@
 - Always read /design-system/brand.json for business name, phone, address, tagline, and logo before generating any page content.
 - Always read /design-system/reviews.json for customer testimonials. Reviews use a "recommends" flag (not star ratings) since they come from Facebook. Each review has a direct URL — link to it. Use brand.social.facebook_reviews as the "See all recommendations" link.
 
+## meta_files
+These files live at the repo root and are served publicly. All values must be sourced from brand.json — never hardcoded independently.
+
+### robots.txt
+- Must always allow all crawlers (`User-agent: * / Disallow:`)
+- Must include `Sitemap: https://www.marantosws.com/sitemap.xml` after sitemap.xml exists
+- Do not add `Disallow` rules without explicit instruction
+
+### humans.txt
+- Follows the [humanstxt.org](https://humanstxt.org) convention
+- Contains `/* TEAM */` and `/* PROJECT */` sections
+- Update `/* TEAM */` when maintainers change
+- Do not add role/contributor entries without confirmation
+
+### llms.txt
+- Follows the [llmstxt.org](https://llmstxt.org) spec — markdown optimized for LLM consumption
+- H1 must be the exact business name from `brand.json`
+- Blockquote summary must include: location, founded year, license number, and 24/7 claim (if accurate)
+- Services list must match the confirmed services in brand.json (or services.json once created — see issue #68)
+- Contact details (phone, email, address) must exactly match brand.json
+- Update llms.txt any time brand.json contact info or services change
+- Include in `dist/` build output alongside robots.txt and humans.txt
+
 ## component_specs
 - **TechnicianCard**: Photo on left, "Verified" checkmark, Name, and "Dispatched from [City]" text.
 - **ServiceCard**: Use thick-stroke 2px line icons. Minimal text, large "Book Now" buttons.
