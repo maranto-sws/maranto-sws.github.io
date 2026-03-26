@@ -1,2 +1,7 @@
 # macOS
 .DS_Store
+
+# Test tooling
+node_modules/
+playwright-report/
+test-results/
