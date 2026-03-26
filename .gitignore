@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
 
+# Build output
+dist/
+
 # Test tooling
 node_modules/
 playwright-report/
