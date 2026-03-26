@@ -10,7 +10,7 @@
 3. **Conversion Path**: Priority is Phone Call > SMS > Booking Form.
 
 ## data_sources
-- Always read /design-system/brand.json for business name, phone, address, tagline, and logo before generating any page content.
+- Always read /design-system/brand.json for business name, phone, address, tagline, logo, and analytics IDs before generating any page content.
 - Always read /design-system/reviews.json for customer testimonials. Reviews use a "recommends" flag (not star ratings) since they come from Facebook. Each review has a direct URL — link to it. Use brand.social.facebook_reviews as the "See all recommendations" link.
 
 ## meta_files
@@ -35,6 +35,11 @@ These files live at the repo root and are served publicly. All values must be so
 - Contact details (phone, email, address) must exactly match brand.json
 - Update llms.txt any time brand.json contact info or services change
 - Include in `dist/` build output alongside robots.txt and humans.txt
+
+## analytics
+- Every page must include the Google Analytics snippet using `brand.analytics.google_measurement_id`.
+- Place the `<script async src="https://www.googletagmanager.com/gtag/js?id=...">` tag and the inline `gtag` init block at the top of `<head>`, before the favicon links.
+- Never hardcode the measurement ID — always source it from brand.json.
 
 ## component_specs
 - **TechnicianCard**: Photo on left, "Verified" checkmark, Name, and "Dispatched from [City]" text.

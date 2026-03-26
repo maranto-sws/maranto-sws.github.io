@@ -15,6 +15,9 @@
     "founded": 2004,
     "logo": "/assets/logo.svg"
   },
+  "analytics": {
+    "google_measurement_id": "G-S7JVKFXNST"
+  },
   "social": {
     "google": "https://g.page/...",
     "facebook": "https://www.facebook.com/marantosws/",
