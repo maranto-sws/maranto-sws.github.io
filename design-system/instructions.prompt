@@ -22,3 +22,31 @@
 - Mobile-first design (buttons min-height 44px).
 - Use local SEO Schema.org markup for "PlumbingService".
 - Use the provided tailwind.config.js for all styling.
+
+## accessibility_constraints
+These rules are MANDATORY. Violating them will cause WCAG AA failures that harm users and damage PageSpeed scores.
+
+### Landmarks
+- Every page must have exactly one `<main>` element wrapping all content between `<header>` and `<footer>`.
+- Use `aria-labelledby` on `<section>` elements that contain a visible `<h2>` heading.
+- Use `aria-label` on `<section>` elements with no visible heading (e.g. hero, trust bar).
+
+### ARIA attributes
+- NEVER add `aria-label` to a plain `<div>` or `<span>` with no ARIA role — it is silently ignored and flagged as a violation.
+- To label a group of decorative icons (e.g. star rating), add `role="img" aria-label="..."` to the container.
+- If the same information is already expressed in adjacent visible text (e.g. "4.9 Google Rating" next to star icons), use `aria-hidden="true"` on the icon group instead.
+
+### Color contrast (WCAG AA — 4.5:1 normal text, 3:1 large text)
+**FORBIDDEN combinations** (both fail WCAG AA):
+- `text-white` on `bg-brand-orange` → ratio 2.3:1 — use `text-brand-navy` instead (ratio 7:1 ✓)
+- `text-brand-orange` on `bg-white` or `bg-brand-clean` → ratio ~2.3:1 — use `text-brand-navy` instead
+- `text-gray-400` on any light surface → ratio ~2.6:1 — use `text-gray-500` (minimum) for muted/secondary text
+
+**APPROVED combinations**:
+- `text-brand-navy` on `bg-brand-orange` → 7:1 ✓ (buttons, emergency strip text)
+- `text-white` on `bg-brand-navy` → 13:1 ✓ (header, footer, booking section)
+- `text-brand-orange` on `bg-brand-navy` → 7:1 ✓ (section labels, icons on dark backgrounds)
+- `text-brand-navy` on `bg-white` or `bg-brand-clean` → ~19:1 ✓ (body copy, headings, labels)
+- `text-gray-500` on `bg-white` → 4.6:1 ✓ (dates, footnotes, secondary metadata)
+
+**Quick rule**: brand-orange (#FF8C00) may ONLY appear as a text color on `bg-brand-navy`. On any other background, use `text-brand-navy` for text.
