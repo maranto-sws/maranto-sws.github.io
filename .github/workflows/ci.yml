@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - 'claude/**'
+  pull_request:
+    branches:
+      - main
+      - master
+
+# Cancel in-progress runs for the same branch on new push
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ─── Job 1: Content Integrity ─────────────────────────────────────────────
+  # Pure Node.js, no install step. Runs first and fast.
+  # Catches AI regressions: wrong phone, missing reviews, broken Schema.org.
+  content-integrity:
+    name: Content Integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run content integrity checks
+        run: node tests/content-integrity.js
+
+  # ─── Job 2: Behavioral + Accessibility ───────────────────────────────────
+  # Playwright E2E tests for UX contracts and axe-core a11y audit.
+  behavioral-and-a11y:
+    name: Behavioral & Accessibility
+    runs-on: ubuntu-latest
+    needs: content-integrity
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run behavioral and accessibility tests
+        run: npx playwright test --grep-invert "Visual Regression"
+
+      - name: Upload Playwright report on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report-behavioral
+          path: playwright-report/
+          retention-days: 7
+
+  # ─── Job 3: Visual Regression ────────────────────────────────────────────
+  # Screenshot comparison against committed baselines.
+  # Fails if unexpected visual changes are detected.
+  # On failure, diffs are uploaded as artifacts for human review.
+  #
+  # SETUP: Before merging the first PR that adds visual tests, run:
+  #   npm run test:update-snapshots
+  # then commit the generated snapshots in tests/snapshots/.
+  visual-regression:
+    name: Visual Regression
+    runs-on: ubuntu-latest
+    needs: content-integrity
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run visual regression tests
+        run: npx playwright test --grep "Visual Regression"
+
+      - name: Upload diff artifacts on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-regression-diffs
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14
