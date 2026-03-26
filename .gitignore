@@ -4,6 +4,9 @@
 # Build output
 dist/
 
+# Claude Code worktree metadata
+.claude/
+
 # Test tooling
 node_modules/
 playwright-report/
