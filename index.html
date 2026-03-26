@@ -119,6 +119,12 @@
   </style>
 
   <!-- Schema.org: PlumbingService -->
+  <!--
+    TODO: Add a street address (or P.O. Box) to the JSON-LD schema below once available.
+    Including a streetAddress and postalCode in Schema.org/Plumber improves local SEO:
+    Google uses it to verify the business location for map pack and "near me" rankings.
+    Even a P.O. Box is better than no address. See: https://schema.org/PostalAddress
+  -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -132,10 +138,8 @@
     "openingHours": "Mo-Su 00:00-24:00",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "235 Nordic Rd",
       "addressLocality": "Bloomingdale",
       "addressRegion": "IL",
-      "postalCode": "60108",
       "addressCountry": "US"
     },
     "geo": {
