@@ -2,7 +2,7 @@
 /**
  * Content Integrity Tests
  *
- * Validates that plumbing/index.html stays in sync with design-system/*.json.
+ * Validates that index.html stays in sync with design-system/*.json.
  * These tests are the first line of defense against AI-generated regressions:
  *   - Wrong phone number / email / address
  *   - Placeholder content slipping in
@@ -20,7 +20,7 @@ const path = require('path');
 const assert = require('assert');
 
 const ROOT    = path.join(__dirname, '..');
-const html    = fs.readFileSync(path.join(ROOT, 'plumbing/index.html'), 'utf8');
+const html    = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const brand   = JSON.parse(fs.readFileSync(path.join(ROOT, 'design-system/brand.json'), 'utf8'));
 const reviews = JSON.parse(fs.readFileSync(path.join(ROOT, 'design-system/reviews.json'), 'utf8'));
 
