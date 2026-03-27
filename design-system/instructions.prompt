@@ -5,7 +5,7 @@
 1. **Urgency First**: The "Panic Button" (Emergency Call) must be persistent on mobile and high-contrast orange.
 2. **Trust Architecture**: Every page must feature a 'Trust Bar' with:
    - 5-Star Google Rating
-   - Insured Badge
+   - Licensed/Insured Badge
    - "Clean Home Guarantee"
 3. **Conversion Path**: Priority is Phone Call > SMS > Booking Form.
 
@@ -30,7 +30,7 @@ These files live at the repo root and are served publicly. All values must be so
 ### llms.txt
 - Follows the [llmstxt.org](https://llmstxt.org) spec — markdown optimized for LLM consumption
 - H1 must be the exact business name from `brand.json`
-- Blockquote summary must include: location, founded year, and 24/7 claim (if accurate)
+- Blockquote summary must include: location, founded year, license number, and 24/7 claim (if accurate)
 - Services list must match the confirmed services in brand.json (or services.json once created — see issue #68)
 - Contact details (phone, email, address) must exactly match brand.json
 - Update llms.txt any time brand.json contact info or services change
@@ -42,7 +42,8 @@ These files live at the repo root and are served publicly. All values must be so
 - Never hardcode the measurement ID — always source it from brand.json.
 
 ## component_specs
-- **TechnicianCard**: Photo on left, "Verified" checkmark, Name, and "Dispatched from [City]" text.
+- **TechnicianCard**: Photo on left, "Verified" checkmark, Name, and "Dispatched from [City]" text. `hidden: true — do not render on live pages` (replaced by WhyMarantosCard)
+- **WhyMarantosCard**: 4-card 2×2 grid (mobile) / 4-column row (md+). Each card: bg-white, rounded-plumber, shadow-sm, border border-gray-100, p-6. Icon in a 48×48 bg-brand-navy rounded-plumber container (aria-hidden), orange SVG stroke (#FF8C00), stroke-width 2px. Bold h3 heading in text-brand-navy font-heading, body copy in text-gray-600 text-sm. Data sourced from design-system/values.json `why_marantos` array. Section uses aria-labelledby pointing to the h2.
 - **ServiceCard**: Use thick-stroke 2px line icons. Minimal text, large "Book Now" buttons.
 - **HeroSection**: Background should show a real branded truck. Headline must focus on "Fast Response" or "24/7 Availability."
 

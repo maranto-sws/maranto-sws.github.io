@@ -1,0 +1,32 @@
+{
+  "why_marantos": [
+    {
+      "id": "owner-on-every-job",
+      "title": "Owner on Every Job",
+      "description": "Giuseppe handles every call personally. No subcontractors, no surprises — just the owner showing up and getting it done right.",
+      "icon": "person",
+      "hidden": false
+    },
+    {
+      "id": "same-day-response",
+      "title": "Same-Day Response",
+      "description": "When you've got a burst pipe or a backed-up drain, waiting isn't an option. We move fast, often same day.",
+      "icon": "clock",
+      "hidden": false
+    },
+    {
+      "id": "clean-worksite-guarantee",
+      "title": "Clean Worksite Guarantee",
+      "description": "We treat your home with respect. Every job ends with a full cleanup — we leave no mess behind.",
+      "icon": "shield-check",
+      "hidden": false
+    },
+    {
+      "id": "straightforward-pricing",
+      "title": "Straightforward Pricing",
+      "description": "No hidden fees, no bait-and-switch quotes. You get an honest price before any work begins.",
+      "icon": "dollar-sign",
+      "hidden": false
+    }
+  ]
+}
