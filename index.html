@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maranto's Sewer &amp; Water Services – 24/7 Emergency Service | Bloomingdale, IL</title>
-  <meta name="description" content="Licensed &amp; insured sewer and water specialists serving Bloomingdale, IL and surrounding areas. Fast 24/7 response for leaks, drains, water heaters &amp; more. Call (630) 421-0091." />
+  <title>Maranto's Sewer &amp; Water Services LLC – 24/7 Emergency Service | Bloomingdale, IL</title>
+  <meta name="description" content="Trusted sewer and water specialists serving Bloomingdale, IL and surrounding areas. Fast 24/7 response for leaks, drains, water heaters &amp; more. Call (630) 421-0091." />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7JVKFXNST"></script>
@@ -27,9 +27,14 @@
 
   <!-- Tailwind CDN with custom config -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <!-- Dark mode: prevent flash of wrong theme before page renders -->
+  <script>
+    (function(){var s=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(s===null&&d))document.documentElement.classList.add('dark');})();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -55,6 +60,7 @@
     /* Base reset */
     *, *::before, *::after { box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #1a1a1a; margin: 0; }
+    .dark body { background: #0f172a; color: #f1f5f9; }
 
     /* Thick-stroke SVG icon style */
     .icon-thick { stroke-width: 2px; }
@@ -107,6 +113,9 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(0,33,71,0.15);
     }
+    .dark .card-lift:hover {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+    }
 
     /* Form focus ring */
     input:focus, select:focus, textarea:focus {
@@ -156,12 +165,6 @@
       "latitude": 41.9492,
       "longitude": -88.0801
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "312"
-    },
-    "license": "PL-2024-0471",
     "areaServed": {
       "@type": "GeoCircle",
       "geoMidpoint": {
@@ -187,7 +190,7 @@
   </script>
 </head>
 
-<body class="font-body">
+<body id="top" class="font-body">
 
   <!-- ============================================================
        EMERGENCY HEADER — mobile-first, sticky
@@ -236,6 +239,25 @@
         <a href="#booking"  class="hover:text-brand-orange transition-colors">Book Online</a>
       </nav>
 
+      <!-- Theme toggle (desktop) -->
+      <button id="theme-toggle"
+              onclick="toggleTheme()"
+              aria-label="Toggle color theme"
+              class="hidden md:flex tap-target items-center justify-center w-10 h-10 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+        <!-- Sun: visible in dark mode, click to go light -->
+        <svg class="w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon: visible in light mode, click to go dark -->
+        <svg class="w-5 h-5 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
       <!-- Desktop CTA buttons -->
       <div class="hidden md:flex items-center gap-3">
         <a href="sms:+16304210091?body=Hi%2C%20I%20need%20a%20plumber."
@@ -270,6 +292,21 @@
         <a href="#team"     class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Our Team</a>
         <a href="#reviews"  class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Reviews</a>
         <a href="#booking"  class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Book Online</a>
+        <button onclick="toggleTheme()"
+                class="tap-target flex items-center gap-2 px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors w-full text-left">
+          <svg class="w-4 h-4 hidden dark:block shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="w-4 h-4 block dark:hidden shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <span class="dark:hidden">Switch to Dark Mode</span>
+          <span class="hidden dark:inline">Switch to Light Mode</span>
+        </button>
         <div class="flex gap-3 pt-3">
           <a href="sms:+16304210091?body=Hi%2C%20I%20need%20a%20plumber."
              class="tap-target flex-1 inline-flex items-center justify-center gap-2 border-2 border-brand-orange text-brand-orange font-heading font-bold text-sm px-4 rounded-plumber">
@@ -344,7 +381,7 @@
 
         <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-8 max-w-lg">
           If water goes through it, Maranto's can do it! Burst pipe, clogged drain,
-          or no hot water — our licensed team arrives fast, guaranteed. We clean up when we're done.
+          or no hot water — our team arrives fast, guaranteed. We clean up when we're done.
         </p>
 
         <!-- CTA group -->
@@ -382,13 +419,14 @@
               <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
               <polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
-            <span>Licensed &amp; Insured</span>
+            <span>Fully Insured</span>
           </div>
           <div class="flex items-center gap-2">
             <svg class="w-4 h-4 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+              <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
             </svg>
-            <span>4.9-star rated (312 reviews)</span>
+            <a href="https://www.facebook.com/marantosws/reviews/" target="_blank" rel="noopener noreferrer">Facebook Recommended</a>
           </div>
         </div>
       </div>
@@ -403,25 +441,23 @@
     <div class="max-w-6xl mx-auto">
       <div class="flex flex-wrap items-center justify-center md:justify-between gap-5 text-white">
 
-        <!-- 5-Star Google Rating -->
+        <!-- Facebook Recommended -->
         <div class="flex items-center gap-3">
-          <div class="flex text-brand-orange" role="img" aria-label="5 star rating">
-            <!-- 5 stars -->
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div class="w-10 h-10 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+              <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+            </svg>
           </div>
           <div>
-            <p class="font-heading font-bold text-sm leading-none">4.9 Google Rating</p>
-            <p class="text-white/60 text-xs">312 Verified Reviews</p>
+            <p class="font-heading font-bold text-sm leading-none">Recommended on Facebook</p>
+            <p class="text-white/60 text-xs"><a href="https://www.facebook.com/marantosws/reviews/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">See our reviews →</a></p>
           </div>
         </div>
 
         <div class="hidden md:block w-px h-8 bg-white/20" aria-hidden="true"></div>
 
-        <!-- Licensed & Insured Badge -->
+        <!-- Insured Badge -->
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center shrink-0">
             <svg class="w-5 h-5 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -429,8 +465,8 @@
             </svg>
           </div>
           <div>
-            <p class="font-heading font-bold text-sm leading-none">Licensed &amp; Insured</p>
-            <p class="text-white/60 text-xs">State Lic. #PL-2024-0471</p>
+            <p class="font-heading font-bold text-sm leading-none">Fully Insured</p>
+            <p class="text-white/60 text-xs">Protecting your home &amp; property</p>
           </div>
         </div>
 
@@ -474,28 +510,28 @@
   <!-- ============================================================
        SERVICES GRID
   ============================================================ -->
-  <section id="services" class="bg-brand-clean py-16 px-4" aria-labelledby="services-heading">
+  <section id="services" class="bg-brand-clean dark:bg-gray-900 py-16 px-4" aria-labelledby="services-heading">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
-        <p class="text-brand-navy font-semibold uppercase tracking-widest text-sm mb-2">What We Fix</p>
-        <h2 id="services-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
+        <p class="text-brand-navy dark:text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">What We Fix</p>
+        <h2 id="services-heading" class="font-heading font-extrabold text-brand-navy dark:text-white text-3xl md:text-4xl">
           Full-Service Plumbing
         </h2>
-        <p class="text-gray-600 mt-3 max-w-md mx-auto">From emergencies to planned upgrades — one call handles it all.</p>
+        <p class="text-gray-600 dark:text-gray-400 mt-3 max-w-md mx-auto">From emergencies to planned upgrades — one call handles it all.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
         <!-- Service Card: Emergency Leaks -->
-        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+        <article class="bg-white dark:bg-gray-800 rounded-plumber p-6 shadow-sm border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4">
           <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
             <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>
             </svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Emergency Leak Repair</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Burst pipe, slab leak, or active flooding — we stop the damage fast, any hour.</p>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-lg mb-1">Emergency Leak Repair</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Burst pipe, slab leak, or active flooding — we stop the damage fast, any hour.</p>
           </div>
           <a href="tel:+16304210091"
              class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-brand-navy font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
@@ -504,7 +540,7 @@
         </article>
 
         <!-- Service Card: Drain Cleaning -->
-        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+        <article class="bg-white dark:bg-gray-800 rounded-plumber p-6 shadow-sm border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4">
           <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
             <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
@@ -513,8 +549,8 @@
             </svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Drain Cleaning</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Slow drains, clogs, or backed-up sewer lines — hydro-jetting &amp; snaking available.</p>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-lg mb-1">Drain Cleaning</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Slow drains, clogs, or backed-up sewer lines — hydro-jetting &amp; snaking available.</p>
           </div>
           <a href="#booking"
              class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-brand-navy font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
@@ -523,15 +559,15 @@
         </article>
 
         <!-- Service Card: Water Heater -->
-        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+        <article class="bg-white dark:bg-gray-800 rounded-plumber p-6 shadow-sm border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4">
           <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
             <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2c-5.33 4-8 8-8 12a8 8 0 0016 0c0-4-2.67-8-8-12z"/>
             </svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Water Heater Service</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Installation, repair, and replacement of tank &amp; tankless water heaters — same day.</p>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-lg mb-1">Water Heater Service</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Installation, repair, and replacement of tank &amp; tankless water heaters — same day.</p>
           </div>
           <a href="#booking"
              class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-brand-navy font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
@@ -540,15 +576,15 @@
         </article>
 
         <!-- Service Card: Pipe Repair -->
-        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+        <article class="bg-white dark:bg-gray-800 rounded-plumber p-6 shadow-sm border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4">
           <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
             <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Pipe Repair &amp; Repiping</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Corroded, leaking, or frozen pipes replaced with durable copper or PEX.</p>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-lg mb-1">Pipe Repair &amp; Repiping</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Corroded, leaking, or frozen pipes replaced with durable copper or PEX.</p>
           </div>
           <a href="#booking"
              class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-brand-navy font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
@@ -557,7 +593,7 @@
         </article>
 
         <!-- Service Card: Fixtures -->
-        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+        <article class="bg-white dark:bg-gray-800 rounded-plumber p-6 shadow-sm border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4">
           <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
             <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
@@ -565,8 +601,8 @@
             </svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Fixture Installation</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Faucets, toilets, showers, and garbage disposals installed right the first time.</p>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-lg mb-1">Fixture Installation</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Faucets, toilets, showers, and garbage disposals installed right the first time.</p>
           </div>
           <a href="#booking"
              class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-brand-navy font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
@@ -575,7 +611,7 @@
         </article>
 
         <!-- Service Card: Sewer Line -->
-        <article class="bg-white rounded-plumber p-6 shadow-sm border border-gray-100 card-lift flex flex-col gap-4">
+        <article class="bg-white dark:bg-gray-800 rounded-plumber p-6 shadow-sm border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4">
           <div class="w-12 h-12 rounded-plumber bg-brand-orange/10 flex items-center justify-center">
             <svg class="w-6 h-6 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
@@ -584,8 +620,8 @@
             </svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-heading font-bold text-brand-navy text-lg mb-1">Sewer Line Service</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Camera inspection, root clearing, and trenchless sewer line repair or replacement.</p>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-lg mb-1">Sewer Line Service</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Camera inspection, root clearing, and trenchless sewer line repair or replacement.</p>
           </div>
           <a href="#booking"
              class="tap-target inline-flex items-center justify-center bg-brand-orange hover:bg-orange-600 text-brand-navy font-heading font-bold text-sm px-5 rounded-plumber transition-colors w-full">
@@ -601,24 +637,24 @@
   <!-- ============================================================
        REVIEWS / SOCIAL PROOF
   ============================================================ -->
-  <section id="reviews" class="bg-white py-16" aria-labelledby="reviews-heading">
+  <section id="reviews" class="bg-white dark:bg-gray-950 py-16" aria-labelledby="reviews-heading">
 
     <!-- Heading row + desktop prev/next arrows -->
     <div class="max-w-6xl mx-auto px-4 mb-10">
       <div class="flex items-end justify-between gap-4">
         <div>
-          <p class="text-brand-navy font-semibold uppercase tracking-widest text-sm mb-2">What Customers Say</p>
-          <h2 id="reviews-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
+          <p class="text-brand-navy dark:text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">What Customers Say</p>
+          <h2 id="reviews-heading" class="font-heading font-extrabold text-brand-navy dark:text-white text-3xl md:text-4xl">
             Trusted by Your Neighbors
           </h2>
         </div>
         <div class="hidden md:flex items-center gap-2 shrink-0 pb-1">
           <button id="reviews-prev" aria-label="Previous review"
-                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-brand-navy hover:text-brand-orange hover:border-brand-orange transition-colors">
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-700 text-brand-navy dark:text-white hover:text-brand-orange hover:border-brand-orange dark:hover:border-brand-orange transition-colors">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <button id="reviews-next" aria-label="Next review"
-                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-brand-navy hover:text-brand-orange hover:border-brand-orange transition-colors">
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-700 text-brand-navy dark:text-white hover:text-brand-orange hover:border-brand-orange dark:hover:border-brand-orange transition-colors">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
@@ -629,8 +665,8 @@
     <div class="max-w-6xl mx-auto overflow-hidden pb-4 relative"
          role="region" aria-label="Customer reviews">
       <!-- Fade overlays — JS toggles opacity based on scroll position -->
-      <div id="reviews-fade-left"  class="absolute left-0  top-0 bottom-4 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10 transition-opacity duration-200 opacity-0" aria-hidden="true"></div>
-      <div id="reviews-fade-right" class="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 transition-opacity duration-200" aria-hidden="true"></div>
+      <div id="reviews-fade-left"  class="absolute left-0  top-0 bottom-4 w-32 bg-gradient-to-r from-white dark:from-gray-950 to-transparent pointer-events-none z-10 transition-opacity duration-200 opacity-0" aria-hidden="true"></div>
+      <div id="reviews-fade-right" class="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-white dark:from-gray-950 to-transparent pointer-events-none z-10 transition-opacity duration-200" aria-hidden="true"></div>
       <div id="reviews-track"
            class="flex gap-4 pb-2"
            style="overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:1rem;padding-right:1rem;min-height:220px;">
@@ -639,19 +675,19 @@
         <a href="https://www.facebook.com/patricia.sokolowski.77/posts/pfbid031V9bse4hffuDY5nSddDvu9HcPGmEwNas87iZr77oB2NmHpfPmvoagsnDBGq8F8tAl"
            target="_blank" rel="noopener noreferrer"
            class="snap-start shrink-0 w-[80vw] md:w-80 flex">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+          <blockquote class="bg-brand-clean dark:bg-gray-800 rounded-plumber p-6 border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-700">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Giuseppe was very knowledgeable and thorugh. I called him and just by explaining my problem he knew ezactly what it was. He was out within the hour and the problem was fixed very fast. I would for sure recommend him to anyone with plumbing issues."</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex-1">"Giuseppe was very knowledgeable and thorugh. I called him and just by explaining my problem he knew ezactly what it was. He was out within the hour and the problem was fixed very fast. I would for sure recommend him to anyone with plumbing issues."</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">PS</div>
               <div>
-                <p class="font-semibold text-brand-navy text-sm leading-none">Patricia Sokolowski</p>
-                <p class="text-gray-500 text-xs">September 2025</p>
+                <p class="font-semibold text-brand-navy dark:text-white text-sm leading-none">Patricia Sokolowski</p>
+                <p class="text-gray-500 dark:text-gray-400 text-xs">September 2025</p>
               </div>
             </footer>
           </blockquote>
@@ -661,19 +697,19 @@
         <a href="https://www.facebook.com/J.Moe320/posts/pfbid0SahkqEyFqYTFFXVC5C9S2Ak2YzqW8Rv6KehYWsEui14FmK9SGrwri6hy9Go84Qkrl"
            target="_blank" rel="noopener noreferrer"
            class="snap-start shrink-0 w-[80vw] md:w-80 flex">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+          <blockquote class="bg-brand-clean dark:bg-gray-800 rounded-plumber p-6 border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-700">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Best in the business!! We have been using Maranto's for several years now . He has affordable pricing and the work is TOP QUALITY. Trust his word and he has Very honest pricing. If you have found this review there is no need to keep looking for a company."</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex-1">"Best in the business!! We have been using Maranto's for several years now . He has affordable pricing and the work is TOP QUALITY. Trust his word and he has Very honest pricing. If you have found this review there is no need to keep looking for a company."</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">JK</div>
               <div>
-                <p class="font-semibold text-brand-navy text-sm leading-none">Jason Kell</p>
-                <p class="text-gray-500 text-xs">October 2024</p>
+                <p class="font-semibold text-brand-navy dark:text-white text-sm leading-none">Jason Kell</p>
+                <p class="text-gray-500 dark:text-gray-400 text-xs">October 2024</p>
               </div>
             </footer>
           </blockquote>
@@ -683,19 +719,19 @@
         <a href="https://www.facebook.com/michael.francis.785519/posts/pfbid027UL3H9GQPMk1UkVKf26ey98LBAEwCQihvkfMUWmikH3eBA7W7yGNrUyNb2JEv3kyl"
            target="_blank" rel="noopener noreferrer"
            class="snap-start shrink-0 w-[80vw] md:w-80 flex">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+          <blockquote class="bg-brand-clean dark:bg-gray-800 rounded-plumber p-6 border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-700">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Hands down the best around! Very professional, clean and organized. Takes pride in ensuring plumbing is working perfectly, and cleans up after the job is done. Hire them you won't be disappointed."</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex-1">"Hands down the best around! Very professional, clean and organized. Takes pride in ensuring plumbing is working perfectly, and cleans up after the job is done. Hire them you won't be disappointed."</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">MF</div>
               <div>
-                <p class="font-semibold text-brand-navy text-sm leading-none">Michael Francis</p>
-                <p class="text-gray-500 text-xs">November 2023</p>
+                <p class="font-semibold text-brand-navy dark:text-white text-sm leading-none">Michael Francis</p>
+                <p class="text-gray-500 dark:text-gray-400 text-xs">November 2023</p>
               </div>
             </footer>
           </blockquote>
@@ -703,19 +739,19 @@
 
         <!-- Rainy Flores — May 2019 -->
         <div class="snap-start shrink-0 w-[80vw] md:w-80 flex">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+          <blockquote class="bg-brand-clean dark:bg-gray-800 rounded-plumber p-6 border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-700">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Giuseppe was very professional came to fix our hose bib replacement I recommend him to everyone 🙂"</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex-1">"Giuseppe was very professional came to fix our hose bib replacement I recommend him to everyone 🙂"</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">RF</div>
               <div>
-                <p class="font-semibold text-brand-navy text-sm leading-none">Rainy Flores</p>
-                <p class="text-gray-500 text-xs">May 2019</p>
+                <p class="font-semibold text-brand-navy dark:text-white text-sm leading-none">Rainy Flores</p>
+                <p class="text-gray-500 dark:text-gray-400 text-xs">May 2019</p>
               </div>
             </footer>
           </blockquote>
@@ -723,19 +759,19 @@
 
         <!-- Damian Swierbutowskii — May 2019 -->
         <div class="snap-start shrink-0 w-[80vw] md:w-80 flex">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+          <blockquote class="bg-brand-clean dark:bg-gray-800 rounded-plumber p-6 border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-700">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Great people to do business with. Very fast response and got the job done the next day. Called 3 places and Giuseppe was the first one to respond with exact details. Next time won't call anyone else. Thanks for the awesome work!!"</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex-1">"Great people to do business with. Very fast response and got the job done the next day. Called 3 places and Giuseppe was the first one to respond with exact details. Next time won't call anyone else. Thanks for the awesome work!!"</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">DS</div>
               <div>
-                <p class="font-semibold text-brand-navy text-sm leading-none">Damian Swierbutowskii</p>
-                <p class="text-gray-500 text-xs">May 2019</p>
+                <p class="font-semibold text-brand-navy dark:text-white text-sm leading-none">Damian Swierbutowskii</p>
+                <p class="text-gray-500 dark:text-gray-400 text-xs">May 2019</p>
               </div>
             </footer>
           </blockquote>
@@ -743,19 +779,19 @@
 
         <!-- Daryl Palumbo O'Leary — May 2019 -->
         <div class="snap-start shrink-0 w-[80vw] md:w-80 flex">
-          <blockquote class="bg-brand-clean rounded-plumber p-6 border border-gray-100 card-lift flex flex-col gap-4 h-full w-full">
+          <blockquote class="bg-brand-clean dark:bg-gray-800 rounded-plumber p-6 border border-gray-100 dark:border-gray-700 card-lift flex flex-col gap-4 h-full w-full">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+              <span class="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-700">
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 Recommends on Facebook
               </span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed flex-1">"Giuseppe installed our back-up sump. He was on time, very professional and knowledgeable, and fair. Great job and I highly recommend. Five-star service"</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex-1">"Giuseppe installed our back-up sump. He was on time, very professional and knowledgeable, and fair. Great job and I highly recommend. Five-star service"</p>
             <footer class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">DP</div>
               <div>
-                <p class="font-semibold text-brand-navy text-sm leading-none">Daryl Palumbo O'Leary</p>
-                <p class="text-gray-500 text-xs">May 2019</p>
+                <p class="font-semibold text-brand-navy dark:text-white text-sm leading-none">Daryl Palumbo O'Leary</p>
+                <p class="text-gray-500 dark:text-gray-400 text-xs">May 2019</p>
               </div>
             </footer>
           </blockquote>
@@ -773,7 +809,7 @@
     <div class="max-w-6xl mx-auto px-4 text-center mt-8">
       <a href="https://www.facebook.com/marantosws/reviews/"
          target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 text-brand-navy font-semibold text-sm hover:text-brand-orange transition-colors">
+         class="inline-flex items-center gap-2 text-brand-navy dark:text-white font-semibold text-sm hover:text-brand-orange transition-colors">
         See all recommendations on Facebook
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -912,94 +948,73 @@
 
 
   <!-- ============================================================
-       TECHNICIAN CARDS
+       WHY MARANTO'S — BENEFIT CARDS
   ============================================================ -->
-  <section id="team" class="bg-brand-clean py-16 px-4" aria-labelledby="team-heading">
+  <section id="why-marantos" class="bg-brand-clean dark:bg-gray-900 py-16 px-4" aria-labelledby="why-marantos-heading">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
-        <p class="text-brand-navy font-semibold uppercase tracking-widest text-sm mb-2">Who's Coming to Your Door</p>
-        <h2 id="team-heading" class="font-heading font-extrabold text-brand-navy text-3xl md:text-4xl">
-          Your Verified Technicians
+        <p class="text-brand-navy dark:text-brand-orange font-semibold uppercase tracking-widest text-sm mb-2">The Maranto's Difference</p>
+        <h2 id="why-marantos-heading" class="font-heading font-extrabold text-brand-navy dark:text-white text-3xl md:text-4xl">
+          Why Maranto's?
         </h2>
-        <p class="text-gray-600 mt-3 max-w-md mx-auto">Background-checked, licensed, and dispatched from your area.</p>
+        <p class="text-gray-600 dark:text-gray-400 mt-3 max-w-md mx-auto">Owner-operated since 2019. Every job, every time.</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-        <!-- Tech Card 1 -->
-        <article class="bg-white rounded-plumber shadow-sm border border-gray-100 card-lift overflow-hidden flex flex-col sm:flex-row gap-0">
-          <!-- Photo placeholder (left) -->
-          <div class="sm:w-28 shrink-0 bg-brand-navy flex items-center justify-center p-4">
-            <div class="w-16 h-16 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center">
-              <svg class="w-8 h-8 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
+        <!-- Card 1: Owner on Every Job -->
+        <article class="bg-white dark:bg-gray-800 rounded-plumber shadow-sm border border-gray-100 dark:border-gray-700 p-6 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-navy flex items-center justify-center shrink-0" aria-hidden="true">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#FF8C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
           </div>
-          <!-- Info -->
-          <div class="p-4 flex flex-col justify-center gap-1">
-            <div class="flex items-center gap-2">
-              <p class="font-heading font-bold text-brand-navy text-base leading-none">Dave Kowalski</p>
-              <span class="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full border border-green-200">
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-                Verified
-              </span>
-            </div>
-            <p class="text-gray-500 text-xs">Master Plumber · 14 yrs exp.</p>
-            <p class="text-brand-navy text-xs font-semibold mt-1">Dispatched from Bloomingdale, IL</p>
+          <div>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-base mb-2">Owner on Every Job</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Giuseppe handles every call personally. No subcontractors, no surprises — just the owner showing up and getting it done right.</p>
           </div>
         </article>
 
-        <!-- Tech Card 2 -->
-        <article class="bg-white rounded-plumber shadow-sm border border-gray-100 card-lift overflow-hidden flex flex-col sm:flex-row gap-0">
-          <div class="sm:w-28 shrink-0 bg-brand-navy flex items-center justify-center p-4">
-            <div class="w-16 h-16 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center">
-              <svg class="w-8 h-8 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
+        <!-- Card 2: Same-Day Response -->
+        <article class="bg-white dark:bg-gray-800 rounded-plumber shadow-sm border border-gray-100 dark:border-gray-700 p-6 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-navy flex items-center justify-center shrink-0" aria-hidden="true">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#FF8C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
           </div>
-          <div class="p-4 flex flex-col justify-center gap-1">
-            <div class="flex items-center gap-2">
-              <p class="font-heading font-bold text-brand-navy text-base leading-none">Maria Delgado</p>
-              <span class="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full border border-green-200">
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-                Verified
-              </span>
-            </div>
-            <p class="text-gray-500 text-xs">Journeyman Plumber · 8 yrs exp.</p>
-            <p class="text-brand-navy text-xs font-semibold mt-1">Dispatched from Addison, IL</p>
+          <div>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-base mb-2">Same-Day Response</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">When you've got a burst pipe or a backed-up drain, waiting isn't an option. We move fast, often same day.</p>
           </div>
         </article>
 
-        <!-- Tech Card 3 -->
-        <article class="bg-white rounded-plumber shadow-sm border border-gray-100 card-lift overflow-hidden flex flex-col sm:flex-row gap-0">
-          <div class="sm:w-28 shrink-0 bg-brand-navy flex items-center justify-center p-4">
-            <div class="w-16 h-16 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center">
-              <svg class="w-8 h-8 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
+        <!-- Card 3: Clean Worksite Guarantee -->
+        <article class="bg-white dark:bg-gray-800 rounded-plumber shadow-sm border border-gray-100 dark:border-gray-700 p-6 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-navy flex items-center justify-center shrink-0" aria-hidden="true">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#FF8C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
           </div>
-          <div class="p-4 flex flex-col justify-center gap-1">
-            <div class="flex items-center gap-2">
-              <p class="font-heading font-bold text-brand-navy text-base leading-none">Tom Whitfield</p>
-              <span class="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full border border-green-200">
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-                Verified
-              </span>
-            </div>
-            <p class="text-gray-500 text-xs">Master Plumber · 21 yrs exp.</p>
-            <p class="text-brand-navy text-xs font-semibold mt-1">Dispatched from Carol Stream, IL</p>
+          <div>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-base mb-2">Clean Worksite Guarantee</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">We treat your home with respect. Every job ends with a full cleanup — we leave no mess behind.</p>
+          </div>
+        </article>
+
+        <!-- Card 4: Straightforward Pricing -->
+        <article class="bg-white dark:bg-gray-800 rounded-plumber shadow-sm border border-gray-100 dark:border-gray-700 p-6 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-plumber bg-brand-navy flex items-center justify-center shrink-0" aria-hidden="true">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#FF8C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-brand-navy dark:text-white text-base mb-2">Straightforward Pricing</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">No hidden fees, no bait-and-switch quotes. You get an honest price before any work begins.</p>
           </div>
         </article>
 
@@ -1022,7 +1037,7 @@
       </div>
 
       <form class="bg-white rounded-plumber shadow-2xl p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-5"
-            action="#" method="post" aria-label="Plumbing booking form"
+            aria-label="Plumbing booking form"
             onsubmit="return handleBooking(event)">
 
         <div class="flex flex-col gap-1">
@@ -1082,6 +1097,10 @@
       <div id="booking-success" class="hidden mt-6 bg-green-50 border border-green-200 rounded-plumber p-5 text-center">
         <p class="text-green-700 font-heading font-bold text-lg mb-1">✓ Booking Received!</p>
         <p class="text-green-600 text-sm">We'll call or text you within 15 minutes to confirm your appointment.</p>
+        <button type="button" onclick="resetBookingForm()"
+                class="bg-brand-navy text-white font-heading font-bold px-6 py-3 rounded-plumber min-h-[44px] hover:bg-opacity-90 transition-colors mt-4">
+          Book Another Appointment
+        </button>
       </div>
 
     </div>
@@ -1107,8 +1126,7 @@
             <span class="font-heading font-extrabold text-white text-base">MARANTO'S SEWER &amp; WATER</span>
           </div>
           <p class="text-sm leading-relaxed italic text-white/80 mb-1">"If water goes through it, Maranto's can do it!"</p>
-          <p class="text-sm leading-relaxed">Serving Bloomingdale and surrounding communities since 2004. Licensed, insured, and available 24/7.</p>
-          <p class="text-brand-orange font-semibold text-sm mt-3">State Lic. #PL-2024-0471</p>
+          <p class="text-sm leading-relaxed">Serving Bloomingdale and surrounding communities since 2019. Fully insured and available 24/7.</p>
         </div>
 
         <!-- Quick links -->
@@ -1172,6 +1190,74 @@
        SCRIPTS
   ============================================================ -->
   <script>
+    // ── DEBUG TOOLBAR ──────────────────────────────────────────────────────────
+    // Press ? to toggle, or run enableDebugToolbar() / disableDebugToolbar() in
+    // the console. Visibility persists across reloads via sessionStorage.
+    (function () {
+      var SESS_KEY = 'debugToolbar';
+
+      function render() {
+        var el = document.getElementById('theme-debug');
+        if (!el) return;
+        var stored  = localStorage.getItem('theme');
+        var sysDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+        var active  = document.documentElement.classList.contains('dark');
+        el.innerHTML =
+          '<strong style="display:block;margin-bottom:6px;font-size:13px">🛠 Debug Toolbar</strong>' +
+          'System pref &nbsp;<b>' + (sysDark ? '🌙 dark' : '☀️ light') + '</b><br>' +
+          'localStorage &nbsp;<b>' + (stored === null ? '(none)' : stored) + '</b><br>' +
+          '&lt;html&gt; class &nbsp;<b>' + (active ? '🌙 dark' : '☀️ light') + '</b>' +
+          '<hr style="border-color:#ffffff30;margin:8px 0">' +
+          '<button onclick="localStorage.removeItem(\'theme\');location.reload()" ' +
+            'style="padding:3px 8px;background:#FF8C00;color:#002147;border:none;border-radius:4px;font-weight:bold;cursor:pointer;width:100%">' +
+            'Clear override &amp; reload' +
+          '</button>' +
+          '<div style="margin-top:6px;opacity:.5;font-size:10px">Press <kbd style="background:#fff2;padding:1px 4px;border-radius:3px">?</kbd> or run <kbd style="background:#fff2;padding:1px 4px;border-radius:3px">maranto.debug()</kbd> to hide</div>';
+      }
+
+      function show() {
+        var el = document.getElementById('theme-debug');
+        if (el) { el.style.display = 'block'; render(); sessionStorage.setItem(SESS_KEY, '1'); }
+      }
+      function hide() {
+        var el = document.getElementById('theme-debug');
+        if (el) { el.style.display = 'none'; sessionStorage.removeItem(SESS_KEY); }
+      }
+      function toggle() { document.getElementById('theme-debug').style.display === 'none' ? show() : hide(); }
+
+      window.maranto         = window.maranto || {};
+      window.maranto.debug   = toggle;
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var badge = document.createElement('div');
+        badge.id = 'theme-debug';
+        badge.style.cssText = 'display:none;position:fixed;bottom:16px;right:16px;z-index:9999;' +
+          'background:#002147;color:#fff;font:12px/1.7 monospace;padding:12px 14px;' +
+          'border-radius:8px;border:2px solid #FF8C00;min-width:210px;box-shadow:0 4px 20px rgba(0,0,0,.6)';
+        document.body.appendChild(badge);
+
+        if (sessionStorage.getItem(SESS_KEY)) show();
+
+        window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', function () {
+          if (document.getElementById('theme-debug').style.display !== 'none') render();
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === '?' && !e.ctrlKey && !e.metaKey && !e.altKey &&
+            !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
+          toggle();
+        }
+      });
+    })();
+    // ── END DEBUG TOOLBAR ──────────────────────────────────────────────────────
+
+    // Theme toggle — reads system preference, respects localStorage override
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
     // Mobile nav toggle
     const toggle = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
@@ -1198,12 +1284,36 @@
       });
     });
 
-    // Booking form mock submit
+    // Booking form — opens native SMS app pre-populated with booking details
     function handleBooking(e) {
       e.preventDefault();
-      document.querySelector('#booking form').classList.add('hidden');
+      const form = document.querySelector('#booking form');
+      const name    = (form.elements['name'].value    || '').trim();
+      const phone   = (form.elements['phone'].value   || '').trim();
+      const address = (form.elements['address'].value || '').trim();
+      const service = (form.elements['service'].value || '').trim();
+      const details = (form.elements['details'].value || '').trim();
+      const body = [
+        'Booking Request',
+        'Name: '    + name,
+        'Phone: '   + phone,
+        'Address: ' + address,
+        'Service: ' + service,
+        'Details: ' + (details || 'N/A'),
+      ].join('\n');
+      const smsUri = 'sms:+16304210091?body=' + encodeURIComponent(body);
+      window.location.href = smsUri;
+      form.classList.add('hidden');
       document.getElementById('booking-success').classList.remove('hidden');
       return false;
+    }
+
+    // Reset booking form and hide confirmation
+    function resetBookingForm() {
+      const form = document.querySelector('#booking form');
+      form.reset();
+      form.classList.remove('hidden');
+      document.getElementById('booking-success').classList.add('hidden');
     }
   </script>
 
