@@ -156,11 +156,6 @@
       "latitude": 41.9492,
       "longitude": -88.0801
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "312"
-    },
     "areaServed": {
       "@type": "GeoCircle",
       "geoMidpoint": {
@@ -385,9 +380,10 @@
           </div>
           <div class="flex items-center gap-2">
             <svg class="w-4 h-4 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+              <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
             </svg>
-            <span>4.9-star rated (312 reviews)</span>
+            <a href="https://www.facebook.com/marantosws/reviews/" target="_blank" rel="noopener noreferrer">Facebook Recommended</a>
           </div>
         </div>
       </div>
@@ -402,19 +398,17 @@
     <div class="max-w-6xl mx-auto">
       <div class="flex flex-wrap items-center justify-center md:justify-between gap-5 text-white">
 
-        <!-- 5-Star Google Rating -->
+        <!-- Facebook Recommended -->
         <div class="flex items-center gap-3">
-          <div class="flex text-brand-orange" role="img" aria-label="5 star rating">
-            <!-- 5 stars -->
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div class="w-10 h-10 rounded-full bg-brand-orange/20 border-2 border-brand-orange flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-orange icon-thick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+              <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+            </svg>
           </div>
           <div>
-            <p class="font-heading font-bold text-sm leading-none">4.9 Google Rating</p>
-            <p class="text-white/60 text-xs">312 Verified Reviews</p>
+            <p class="font-heading font-bold text-sm leading-none">Recommended on Facebook</p>
+            <p class="text-white/60 text-xs"><a href="https://www.facebook.com/marantosws/reviews/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">See our reviews →</a></p>
           </div>
         </div>
 
