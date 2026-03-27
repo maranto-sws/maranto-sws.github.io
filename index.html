@@ -1108,7 +1108,7 @@
             'style="padding:3px 8px;background:#FF8C00;color:#002147;border:none;border-radius:4px;font-weight:bold;cursor:pointer;width:100%">' +
             'Clear override &amp; reload' +
           '</button>' +
-          '<div style="margin-top:6px;opacity:.5;font-size:10px">Press <kbd style="background:#fff2;padding:1px 4px;border-radius:3px">?</kbd> to hide</div>';
+          '<div style="margin-top:6px;opacity:.5;font-size:10px">Press <kbd style="background:#fff2;padding:1px 4px;border-radius:3px">?</kbd> or run <kbd style="background:#fff2;padding:1px 4px;border-radius:3px">maranto.debug()</kbd> to hide</div>';
       }
 
       function show() {
@@ -1121,8 +1121,8 @@
       }
       function toggle() { document.getElementById('theme-debug').style.display === 'none' ? show() : hide(); }
 
-      window.enableDebugToolbar  = show;
-      window.disableDebugToolbar = hide;
+      window.maranto         = window.maranto || {};
+      window.maranto.debug   = toggle;
 
       document.addEventListener('DOMContentLoaded', function () {
         var badge = document.createElement('div');
