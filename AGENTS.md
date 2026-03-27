@@ -1,16 +1,34 @@
-# AI Agent Workflow — maranto-sws.github.io
+# Maranto's Sewer & Water Services — Agent & Developer Guide
 
-This project uses Claude (via Anthropic's Cowork) as a collaborative web-building agent. This document explains how that's set up, what the agent knows, and how to work with it effectively.
+This is the single operating reference for both humans and AI agents. `CLAUDE.md` is a symlink to this file — there is no separate agent instructions document.
 
-## How It Works
+---
 
-Rather than re-explaining the project every session, the design system folder acts as a **persistent briefing** — a set of structured files the agent reads before touching anything. This means the agent always knows the real business name, real phone number, real reviews, and the correct visual style without being told each time.
+## Maintaining This File
 
-The technical instructions for Claude specifically live in [`CLAUDE.md`](./CLAUDE.md).
+**Describe capabilities, not file paths.** File paths drift; capabilities don't. If a fact already lives authoritatively in a source file (brand.json, design.json, etc.), reference that file — don't duplicate the value here. Duplication creates two sources of truth and guarantees one will go stale.
+
+Rules of thumb:
+- If removing a line would cause an agent to make a wrong decision, keep it.
+- If removing a line would just mean the agent has to discover something itself, remove it.
+- Never document directory trees or enumerate file lists — use `Glob`/`Grep` for discovery.
+- When a component, rule, or path changes in code, update `instructions.prompt` — not this file.
+
+---
+
+## Before Touching Any Page Content
+
+Always read these files in order — they are the single source of truth for all real data:
+
+1. `design-system/brand.json` — business name, phone, address, tagline, email, social links
+2. `design-system/reviews.json` — real customer recommendations (Facebook format, no star ratings)
+3. `design-system/design.json` — color tokens, typography, border radius
+4. `design-system/tailwind.config.js` — how design tokens map to Tailwind classes
+5. `design-system/instructions.prompt` — component specs, core logic, and conversion rules
+
+Never use placeholder names, fake phone numbers, invented addresses, or dummy review text. All real data lives in the files above.
 
 ## The Design System Folder
-
-`/design-system` is the single source of truth for everything an agent (or developer) needs to build consistently:
 
 | File | What it contains | Update when... |
 |---|---|---|
@@ -37,6 +55,27 @@ Open `design-system/reviews.json` and append an object following this schema:
 
 The `url` is the direct permalink to the individual Facebook post (click the timestamp on the recommendation to get it). Tracking parameters (`?__cft__...`) can be stripped — just keep the base URL.
 
+## Tech Stack
+
+- **Static HTML** — no build step, no framework, no npm
+- **Tailwind CDN** — loaded via `<script src="https://cdn.tailwindcss.com">` with an inline config block; do not reference compiled Tailwind classes that aren't in the base stylesheet
+- **Google Fonts** — Montserrat (headings) and Inter (body), loaded via `<link>`
+- **Inline SVG icons** — thick-stroke (2px), no icon library dependency
+
+## Key Conventions
+
+- **Mobile-first** — all interactive elements must have `min-height: 44px`
+- **Conversion priority** — Phone call > SMS > Booking form (in that order)
+- **Reviews** — Facebook "recommends" format only; each review links to its original post URL; "See all" links to `brand.social.facebook_reviews`
+- **Schema.org** — include `Plumber` JSON-LD on every page for local SEO
+- **No placeholder content** — if real data is missing, ask rather than invent
+
+## Files Not to Touch
+
+- `.gitignore` — already configured
+- `CNAME` — GitHub Pages domain config
+- `CLAUDE.md` — symlink to this file; do not replace with a regular file
+
 ## Prompting Tips
 
 Because the agent reads the design system files automatically, you don't need to repeat brand details in your requests. Effective prompts are short and task-focused:
@@ -45,17 +84,11 @@ Because the agent reads the design system files automatically, you don't need to
 - "Add the new review I just put in reviews.json to the homepage."
 - "Update the phone number in brand.json and rebuild the header."
 
-If something should always be true going forward (a new rule, a new component pattern), the right place for it is `instructions.prompt` — not just a one-off message to the agent.
+If something should always be true going forward (a new rule, a new component pattern), the right place for it is `instructions.prompt` — not a one-off message to the agent.
 
-## Site Structure
+## Build & Deploy
 
-The main homepage lives at `index.html` at the repo root. It is a single self-contained HTML file using Tailwind CDN — no framework build required.
-
-## Build Pipeline
-
-A minimal build script at `scripts/build.sh` copies only public-facing files (`index.html`, `404.html`, `assets/`, `robots.txt`, `humans.txt`, `CNAME`, `sitemap.xml`) into a `dist/` directory. Internal files like `design-system/`, `CLAUDE.md`, `AGENTS.md`, `tests/`, and `scripts/` are intentionally excluded from the deployed output.
-
-Run the build locally with:
+`scripts/build.sh` copies only public-facing files into `dist/` for deployment. Everything else — including this file — is intentionally excluded.
 
 ```
 npm run build
@@ -63,15 +96,9 @@ npm run build
 bash scripts/build.sh
 ```
 
-### GitHub Pages
+**GitHub Pages:** automated on push to `main` via `.github/workflows/deploy.yml`.
 
-Deployment is automated via `.github/workflows/deploy.yml`. On every push to `main`, the workflow runs the build script and deploys `dist/` using the GitHub Pages Actions API.
-
-### Cloudflare Pages
-
-Cloudflare Pages requires manual configuration in the Cloudflare Pages dashboard — it cannot be set via code in this repo. Configure the project with:
-
-- **Build command:** `bash scripts/build.sh`
-- **Build output directory:** `dist`
-
-No framework preset is needed. Leave the framework field blank or set it to "None".
+**Cloudflare Pages:** configure manually in the dashboard (cannot be set via code):
+- Build command: `bash scripts/build.sh`
+- Output directory: `dist`
+- Framework preset: None
