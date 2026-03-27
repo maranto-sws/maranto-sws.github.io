@@ -1086,6 +1086,35 @@
        SCRIPTS
   ============================================================ -->
   <script>
+    // ── THEME DEBUG BADGE (remove this whole block when done testing) ──
+    (function () {
+      function renderDebug() {
+        var stored   = localStorage.getItem('theme');
+        var sysDark  = window.matchMedia('(prefers-color-scheme:dark)').matches;
+        var htmlDark = document.documentElement.classList.contains('dark');
+        var el = document.getElementById('theme-debug');
+        if (!el) return;
+        el.innerHTML =
+          '<strong style="display:block;margin-bottom:4px">Theme Debug</strong>' +
+          'System pref: <b>' + (sysDark ? 'dark' : 'light') + '</b><br>' +
+          'localStorage: <b>' + (stored === null ? '(none)' : stored) + '</b><br>' +
+          '&lt;html&gt; class: <b>' + (htmlDark ? 'dark' : 'light') + '</b><br>' +
+          '<button onclick="localStorage.removeItem(\'theme\');location.reload()" ' +
+            'style="margin-top:6px;padding:3px 8px;background:#FF8C00;color:#002147;border:none;border-radius:4px;font-weight:bold;cursor:pointer">' +
+            'Clear localStorage &amp; reload' +
+          '</button>';
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+        var badge = document.createElement('div');
+        badge.id = 'theme-debug';
+        badge.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9999;background:#002147;color:#fff;font:12px/1.6 monospace;padding:10px 14px;border-radius:8px;border:2px solid #FF8C00;max-width:220px;box-shadow:0 4px 16px rgba(0,0,0,.5)';
+        document.body.appendChild(badge);
+        renderDebug();
+        window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', renderDebug);
+      });
+    })();
+    // ── END THEME DEBUG BADGE ──
+
     // Theme toggle — reads system preference, respects localStorage override
     function toggleTheme() {
       const isDark = document.documentElement.classList.toggle('dark');
