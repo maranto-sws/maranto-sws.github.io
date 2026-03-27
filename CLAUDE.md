@@ -14,23 +14,6 @@ Before generating or editing any page content, always read these files in order:
 
 Never use placeholder names, fake phone numbers, invented addresses, or dummy review text. All real data lives in the files above.
 
-## Repository Structure
-
-```
-/
-├── design-system/
-│   ├── brand.json          # Business identity (name, phone, address, tagline, social)
-│   ├── reviews.json        # Real Facebook recommendations with direct post URLs
-│   ├── design.json         # Design tokens (colors, fonts, radius)
-│   ├── tailwind.config.js  # Tailwind mapping of design tokens
-│   └── instructions.prompt # Component specs and site-building rules
-├── index.html              # Main homepage (primary deliverable)
-├── assets/                 # Shared assets (logo, images)
-├── CLAUDE.md               # This file
-├── AGENTS.md               # Human-readable AI workflow docs
-└── .gitignore
-```
-
 ## Tech Stack
 
 - **Static HTML** — no build step, no framework, no npm
