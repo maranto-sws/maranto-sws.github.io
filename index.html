@@ -626,13 +626,14 @@
     </div>
 
     <!-- Carousel — clipped at max-w-6xl boundary (1152px) so peek is consistent at any viewport width -->
-    <div class="max-w-6xl mx-auto overflow-hidden pb-4 relative">
+    <div class="max-w-6xl mx-auto overflow-hidden pb-4 relative"
+         role="region" aria-label="Customer reviews">
       <!-- Fade overlays — JS toggles opacity based on scroll position -->
       <div id="reviews-fade-left"  class="absolute left-0  top-0 bottom-4 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10 transition-opacity duration-200 opacity-0" aria-hidden="true"></div>
       <div id="reviews-fade-right" class="absolute right-0 top-0 bottom-4 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 transition-opacity duration-200" aria-hidden="true"></div>
       <div id="reviews-track"
            class="flex gap-4 pb-2"
-           style="overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:1rem;padding-right:1rem;">
+           style="overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:1rem;padding-right:1rem;min-height:220px;">
 
         <!-- Patricia Sokolowski — September 2025 -->
         <a href="https://www.facebook.com/patricia.sokolowski.77/posts/pfbid031V9bse4hffuDY5nSddDvu9HcPGmEwNas87iZr77oB2NmHpfPmvoagsnDBGq8F8tAl"
@@ -763,6 +764,11 @@
       </div>
     </div>
 
+    <!-- Dot indicators -->
+    <div id="reviews-dots" class="flex items-center justify-center gap-2.5 mt-5" aria-label="Review navigation dots" role="group">
+      <!-- dots injected by JS -->
+    </div>
+
     <!-- See all link -->
     <div class="max-w-6xl mx-auto px-4 text-center mt-8">
       <a href="https://www.facebook.com/marantosws/reviews/"
@@ -778,29 +784,127 @@
         var track      = document.getElementById('reviews-track');
         var fadeLeft   = document.getElementById('reviews-fade-left');
         var fadeRight  = document.getElementById('reviews-fade-right');
-        var card       = track.querySelector(':scope > *');
+        var dotsContainer = document.getElementById('reviews-dots');
+        var cards      = Array.prototype.slice.call(track.querySelectorAll(':scope > *'));
+        var card       = cards[0];
+        var totalCards = cards.length;
+        var activeIdx  = 0;
+        var autoTimer  = null;
+        var AUTO_DELAY = 5500; /* 5.5 seconds between auto-advances */
+
         /* Cache step width; update on resize to avoid forced reflow on each click */
         var cachedStep = card.offsetWidth + 16; /* gap-4 = 16px */
         if (window.ResizeObserver) {
           new ResizeObserver(function() { cachedStep = card.offsetWidth + 16; }).observe(card);
         }
 
+        /* ── Dot indicators ─────────────────────────────────────── */
+        var dots = [];
+        cards.forEach(function (_, i) {
+          var btn = document.createElement('button');
+          btn.setAttribute('aria-label', 'Go to review ' + (i + 1));
+          btn.setAttribute('type', 'button');
+          /* 9×9 px dot, visible focus ring */
+          btn.style.cssText = 'width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;transition:background-color 0.2s,transform 0.2s;flex-shrink:0;outline-offset:3px;';
+          btn.addEventListener('click', function () { goTo(i); });
+          dotsContainer.appendChild(btn);
+          dots.push(btn);
+        });
+
+        function updateDots(idx) {
+          dots.forEach(function (d, i) {
+            if (i === idx) {
+              /* Active: brand-orange (#FF8C00) — high contrast on white bg (≥3:1 for large UI) */
+              d.style.backgroundColor = '#FF8C00';
+              d.style.transform = 'scale(1.2)';
+              d.setAttribute('aria-current', 'true');
+            } else {
+              /* Inactive: muted gray, clearly visible */
+              d.style.backgroundColor = '#CBD5E1'; /* slate-300 */
+              d.style.transform = 'scale(1)';
+              d.removeAttribute('aria-current');
+            }
+          });
+        }
+
+        /* ── Scroll sync ─────────────────────────────────────────── */
         function updateFades() {
           var atStart = track.scrollLeft < 8;
           var atEnd   = track.scrollLeft >= track.scrollWidth - track.clientWidth - 8;
           fadeLeft.style.opacity  = atStart ? '0' : '1';
           fadeRight.style.opacity = atEnd   ? '0' : '1';
+
+          /* Determine active card by scroll position */
+          var newIdx = Math.round(track.scrollLeft / cachedStep);
+          newIdx = Math.max(0, Math.min(newIdx, totalCards - 1));
+          if (newIdx !== activeIdx) {
+            activeIdx = newIdx;
+            updateDots(activeIdx);
+          }
+        }
+
+        function goTo(idx) {
+          idx = Math.max(0, Math.min(idx, totalCards - 1));
+          track.scrollTo({ left: idx * cachedStep, behavior: 'smooth' });
+          activeIdx = idx;
+          updateDots(activeIdx);
         }
 
         track.addEventListener('scroll', updateFades, { passive: true });
         updateFades();
+        updateDots(0);
 
+        /* ── Prev / Next buttons ─────────────────────────────────── */
         document.getElementById('reviews-prev').addEventListener('click', function () {
-          track.scrollBy({ left: -cachedStep, behavior: 'smooth' });
+          goTo(activeIdx - 1);
         });
         document.getElementById('reviews-next').addEventListener('click', function () {
-          track.scrollBy({ left: cachedStep, behavior: 'smooth' });
+          goTo(activeIdx + 1);
         });
+
+        /* ── Keyboard navigation (ArrowLeft / ArrowRight) ──────── */
+        document.addEventListener('keydown', function (e) {
+          /* Only fire when carousel is in/near the viewport */
+          var rect = track.getBoundingClientRect();
+          var inView = rect.top < window.innerHeight && rect.bottom > 0;
+          if (!inView) return;
+          if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(activeIdx - 1); resetAuto(); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); goTo(activeIdx + 1); resetAuto(); }
+        });
+
+        /* ── Auto-advance ────────────────────────────────────────── */
+        function startAuto() {
+          autoTimer = setInterval(function () {
+            var next = (activeIdx + 1) % totalCards;
+            goTo(next);
+          }, AUTO_DELAY);
+        }
+
+        function stopAuto() {
+          if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+        }
+
+        function resetAuto() {
+          stopAuto();
+          startAuto();
+        }
+
+        startAuto();
+
+        /* Pause on hover or focus within the carousel region */
+        var carouselRegion = track.closest('[role="region"]');
+        carouselRegion.addEventListener('mouseenter', stopAuto);
+        carouselRegion.addEventListener('mouseleave', startAuto);
+        carouselRegion.addEventListener('focusin',   stopAuto);
+        carouselRegion.addEventListener('focusout',  startAuto);
+
+        /* Also pause on manual scroll (touch swipe) */
+        var scrollPauseTimer;
+        track.addEventListener('touchstart', stopAuto, { passive: true });
+        track.addEventListener('touchend', function () {
+          clearTimeout(scrollPauseTimer);
+          scrollPauseTimer = setTimeout(startAuto, 1000);
+        }, { passive: true });
       })();
     </script>
 
