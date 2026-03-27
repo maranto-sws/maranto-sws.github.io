@@ -83,4 +83,4 @@ All real business data lives in `design-system/`. Never use placeholder content 
 - Visual identity changes → `design.json`
 - Site strategy or component rules → `instructions.prompt`
 
-See [`CLAUDE.md`](CLAUDE.md) for the full agent and developer guide.
+See [`AGENTS.md`](AGENTS.md) for the full agent and developer guide.
