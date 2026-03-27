@@ -5,7 +5,7 @@
 1. **Urgency First**: The "Panic Button" (Emergency Call) must be persistent on mobile and high-contrast orange.
 2. **Trust Architecture**: Every page must feature a 'Trust Bar' with:
    - 5-Star Google Rating
-   - Licensed/Insured Badge
+   - Insured Badge
    - "Clean Home Guarantee"
 3. **Conversion Path**: Priority is Phone Call > SMS > Booking Form.
 
@@ -30,7 +30,7 @@ These files live at the repo root and are served publicly. All values must be so
 ### llms.txt
 - Follows the [llmstxt.org](https://llmstxt.org) spec — markdown optimized for LLM consumption
 - H1 must be the exact business name from `brand.json`
-- Blockquote summary must include: location, founded year, license number, and 24/7 claim (if accurate)
+- Blockquote summary must include: location, founded year, and 24/7 claim (if accurate)
 - Services list must match the confirmed services in brand.json (or services.json once created — see issue #68)
 - Contact details (phone, email, address) must exactly match brand.json
 - Update llms.txt any time brand.json contact info or services change
