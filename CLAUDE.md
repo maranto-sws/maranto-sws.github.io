@@ -24,8 +24,7 @@ Never use placeholder names, fake phone numbers, invented addresses, or dummy re
 │   ├── design.json         # Design tokens (colors, fonts, radius)
 │   ├── tailwind.config.js  # Tailwind mapping of design tokens
 │   └── instructions.prompt # Component specs and site-building rules
-├── plumbing/
-│   └── index.html          # Main homepage (primary deliverable)
+├── index.html              # Main homepage (primary deliverable)
 ├── assets/                 # Shared assets (logo, images)
 ├── CLAUDE.md               # This file
 ├── AGENTS.md               # Human-readable AI workflow docs
