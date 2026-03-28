@@ -22,8 +22,8 @@
   <!-- Fonts: preconnect then load non-blocking to avoid render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=optional" rel="stylesheet" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
 
   <!-- Tailwind CSS (generated at build time) -->
   <link rel="stylesheet" href="/assets/css/tailwind.css" />
@@ -802,15 +802,15 @@
 
         track.addEventListener('scroll', updateFades, { passive: true });
 
-        /* Defer geometry reads until the browser's next paint frame to avoid
-           forced reflow during initial script execution */
-        requestAnimationFrame(function () {
+        /* Defer geometry reads until after first paint to avoid blocking LCP.
+           setTimeout(0) yields to the rendering pipeline; rAF runs before paint. */
+        setTimeout(function () {
           cachedStep = card.offsetWidth + 16; /* gap-4 = 16px */
           if (window.ResizeObserver) {
             new ResizeObserver(function () { cachedStep = card.offsetWidth + 16; }).observe(card);
           }
           updateFades();
-        });
+        }, 0);
 
         document.getElementById('reviews-prev').addEventListener('click', function () {
           track.scrollBy({ left: cachedStep, behavior: 'smooth' });
