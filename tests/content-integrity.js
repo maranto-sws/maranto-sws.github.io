@@ -267,10 +267,31 @@ test('Page has lang="en" on <html>', () => {
   assert.ok(html.includes('lang="en"'), 'Missing lang="en" on <html>');
 });
 
-test('All section anchor IDs exist: #hero, #services, #reviews, #team, #booking', () => {
-  const requiredIds = ['hero', 'services', 'reviews', 'team', 'booking'];
+test('All section anchor IDs exist: #hero, #services, #reviews, #why-marantos, #booking', () => {
+  const requiredIds = ['hero', 'services', 'reviews', 'why-marantos', 'booking'];
   requiredIds.forEach(id => {
     assert.ok(html.includes(`id="${id}"`), `Missing section id="${id}"`);
+  });
+});
+
+test('All navbar anchor hrefs resolve to an existing element ID on the page', () => {
+  // Extract all href="#..." values from nav elements (desktop and mobile)
+  const navHrefs = [];
+  const navPattern = /<nav[\s\S]*?<\/nav>/g;
+  let navMatch;
+  while ((navMatch = navPattern.exec(html)) !== null) {
+    const hrefPattern = /href="#([\w-]+)"/g;
+    let hrefMatch;
+    while ((hrefMatch = hrefPattern.exec(navMatch[0])) !== null) {
+      navHrefs.push(hrefMatch[1]);
+    }
+  }
+  assert.ok(navHrefs.length > 0, 'No anchor hrefs found in nav elements');
+  navHrefs.forEach(id => {
+    assert.ok(
+      html.includes(`id="${id}"`),
+      `Navbar links to #${id} but no element with id="${id}" exists on the page`
+    );
   });
 });
 
