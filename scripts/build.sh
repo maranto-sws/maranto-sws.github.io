@@ -26,6 +26,14 @@ copy_if_exists() {
   fi
 }
 
+echo "==> Generating Tailwind CSS..."
+npx tailwindcss \
+  --config "$REPO_ROOT/tailwind.config.js" \
+  --input  "$REPO_ROOT/assets/css/input.css" \
+  --output "$REPO_ROOT/assets/css/tailwind.css" \
+  --minify
+
+echo ""
 echo "==> Copying public-facing files..."
 
 copy_if_exists "index.html"

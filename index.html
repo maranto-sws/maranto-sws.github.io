@@ -25,35 +25,11 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
 
-  <!-- Tailwind CDN with custom config -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <!-- Tailwind CSS (generated at build time) -->
+  <link rel="stylesheet" href="/assets/css/tailwind.css" />
   <!-- Dark mode: prevent flash of wrong theme before page renders -->
   <script>
     (function(){var s=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(s===null&&d))document.documentElement.classList.add('dark');})();
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navy:   '#002147',
-              orange: '#FF8C00',
-              clean:  '#F8F9FA',
-            },
-          },
-          fontFamily: {
-            heading: ['Montserrat', 'sans-serif'],
-            body:    ['Inter', 'sans-serif'],
-          },
-          borderRadius: {
-            plumber: '8px',
-          },
-        },
-      },
-    };
   </script>
 
   <style>
