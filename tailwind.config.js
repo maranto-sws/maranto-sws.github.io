@@ -12,8 +12,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['Montserrat', 'sans-serif'],
-        body:    ['Inter', 'sans-serif'],
+        heading: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        body:    ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
       },
       borderRadius: {
         plumber: '8px',
