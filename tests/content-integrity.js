@@ -267,10 +267,27 @@ test('Page has lang="en" on <html>', () => {
   assert.ok(html.includes('lang="en"'), 'Missing lang="en" on <html>');
 });
 
-test('All section anchor IDs exist: #hero, #services, #reviews, #team, #booking', () => {
-  const requiredIds = ['hero', 'services', 'reviews', 'team', 'booking'];
+test('All section anchor IDs exist: #hero, #services, #reviews, #why-marantos, #booking', () => {
+  const requiredIds = ['hero', 'services', 'reviews', 'why-marantos', 'booking'];
   requiredIds.forEach(id => {
     assert.ok(html.includes(`id="${id}"`), `Missing section id="${id}"`);
+  });
+});
+
+test('All intra-page anchor hrefs resolve to an existing element ID on the page', () => {
+  // Match every href="#something" (skip bare href="#" — that just means scroll-to-top)
+  const hrefPattern = /href="#([\w-]+)"/g;
+  const seen = new Set();
+  let match;
+  while ((match = hrefPattern.exec(html)) !== null) {
+    seen.add(match[1]);
+  }
+  assert.ok(seen.size > 0, 'No intra-page anchor hrefs found');
+  seen.forEach(id => {
+    assert.ok(
+      html.includes(`id="${id}"`),
+      `Page links to #${id} but no element with id="${id}" exists`
+    );
   });
 });
 

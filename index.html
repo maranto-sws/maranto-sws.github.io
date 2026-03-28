@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maranto's Sewer &amp; Water Services LLC – 24/7 Emergency Service | Bloomingdale, IL</title>
   <meta name="description" content="Trusted sewer and water specialists serving Bloomingdale, IL and surrounding areas. Fast 24/7 response for leaks, drains, water heaters &amp; more. Call (630) 421-0091." />
+  <meta name="build-commit" content="__COMMIT_SHA__" />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7JVKFXNST"></script>
@@ -19,47 +20,17 @@
   <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
 
-  <!-- Fonts: preconnect then load non-blocking to avoid render-blocking -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
-
-  <!-- Tailwind CDN with custom config -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <!-- Tailwind CSS (generated at build time) -->
+  <link rel="stylesheet" href="/assets/css/tailwind.css" />
   <!-- Dark mode: prevent flash of wrong theme before page renders -->
   <script>
     (function(){var s=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(s===null&&d))document.documentElement.classList.add('dark');})();
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navy:   '#002147',
-              orange: '#FF8C00',
-              clean:  '#F8F9FA',
-            },
-          },
-          fontFamily: {
-            heading: ['Montserrat', 'sans-serif'],
-            body:    ['Inter', 'sans-serif'],
-          },
-          borderRadius: {
-            plumber: '8px',
-          },
-        },
-      },
-    };
   </script>
 
   <style>
     /* Base reset */
     *, *::before, *::after { box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #1a1a1a; margin: 0; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #F8F9FA; color: #1a1a1a; margin: 0; }
     .dark body { background: #0f172a; color: #f1f5f9; }
 
     /* Thick-stroke SVG icon style */
@@ -233,10 +204,10 @@
 
       <!-- Desktop nav links -->
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-white/80" aria-label="Main navigation">
-        <a href="#services" class="hover:text-brand-orange transition-colors">Services</a>
-        <a href="#team"     class="hover:text-brand-orange transition-colors">Our Team</a>
-        <a href="#reviews"  class="hover:text-brand-orange transition-colors">Reviews</a>
-        <a href="#booking"  class="hover:text-brand-orange transition-colors">Book Online</a>
+        <a href="#services"     class="hover:text-brand-orange transition-colors">Services</a>
+        <a href="#reviews"      class="hover:text-brand-orange transition-colors">Reviews</a>
+        <a href="#why-marantos" class="hover:text-brand-orange transition-colors">Why Us</a>
+        <a href="#booking"      class="hover:text-brand-orange transition-colors">Book Online</a>
       </nav>
 
       <!-- Theme toggle (desktop) -->
@@ -288,10 +259,10 @@
     <!-- Mobile nav drawer -->
     <div id="mobile-nav" class="md:hidden hidden bg-brand-navy border-t border-white/10 px-4 pb-4">
       <nav class="flex flex-col gap-1 pt-3" aria-label="Mobile navigation">
-        <a href="#services" class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Services</a>
-        <a href="#team"     class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Our Team</a>
-        <a href="#reviews"  class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Reviews</a>
-        <a href="#booking"  class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Book Online</a>
+        <a href="#services"     class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Services</a>
+        <a href="#reviews"      class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Reviews</a>
+        <a href="#why-marantos" class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Why Us</a>
+        <a href="#booking"      class="tap-target flex items-center px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors">Book Online</a>
         <button onclick="toggleTheme()"
                 class="tap-target flex items-center gap-2 px-3 text-white/80 hover:text-brand-orange hover:bg-white/5 rounded-plumber font-medium transition-colors w-full text-left">
           <svg class="w-4 h-4 hidden dark:block shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1211,8 +1182,10 @@
         var stored  = localStorage.getItem('theme');
         var sysDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
         var active  = document.documentElement.classList.contains('dark');
+        var commit  = (document.querySelector('meta[name="build-commit"]') || {}).content || 'dev';
         el.innerHTML =
           '<strong style="display:block;margin-bottom:6px;font-size:13px">🛠 Debug Toolbar</strong>' +
+          'Commit &nbsp;<b>' + commit + '</b><br>' +
           'System pref &nbsp;<b>' + (sysDark ? '🌙 dark' : '☀️ light') + '</b><br>' +
           'localStorage &nbsp;<b>' + (stored === null ? '(none)' : stored) + '</b><br>' +
           '&lt;html&gt; class &nbsp;<b>' + (active ? '🌙 dark' : '☀️ light') + '</b>' +
@@ -1234,8 +1207,8 @@
       }
       function toggle() { document.getElementById('theme-debug').style.display === 'none' ? show() : hide(); }
 
-      window.maranto         = window.maranto || {};
-      window.maranto.debug   = toggle;
+      window.maranto       = window.maranto || {};
+      window.maranto.debug = toggle;
 
       document.addEventListener('DOMContentLoaded', function () {
         var badge = document.createElement('div');
