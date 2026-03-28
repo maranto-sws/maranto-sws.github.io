@@ -791,11 +791,7 @@
         var fadeLeft   = document.getElementById('reviews-fade-left');
         var fadeRight  = document.getElementById('reviews-fade-right');
         var card       = track.querySelector(':scope > *');
-        /* Cache step width; update on resize to avoid forced reflow on each click */
-        var cachedStep = card.offsetWidth + 16; /* gap-4 = 16px */
-        if (window.ResizeObserver) {
-          new ResizeObserver(function() { cachedStep = card.offsetWidth + 16; }).observe(card);
-        }
+        var cachedStep = 0;
 
         function updateFades() {
           var atStart = track.scrollLeft < 8;
@@ -805,10 +801,19 @@
         }
 
         track.addEventListener('scroll', updateFades, { passive: true });
-        updateFades();
+
+        /* Defer geometry reads until the browser's next paint frame to avoid
+           forced reflow during initial script execution */
+        requestAnimationFrame(function () {
+          cachedStep = card.offsetWidth + 16; /* gap-4 = 16px */
+          if (window.ResizeObserver) {
+            new ResizeObserver(function () { cachedStep = card.offsetWidth + 16; }).observe(card);
+          }
+          updateFades();
+        });
 
         document.getElementById('reviews-prev').addEventListener('click', function () {
-          track.scrollBy({ left: -cachedStep, behavior: 'smooth' });
+          track.scrollBy({ left: cachedStep, behavior: 'smooth' });
         });
         document.getElementById('reviews-next').addEventListener('click', function () {
           track.scrollBy({ left: cachedStep, behavior: 'smooth' });
