@@ -274,23 +274,19 @@ test('All section anchor IDs exist: #hero, #services, #reviews, #why-marantos, #
   });
 });
 
-test('All navbar anchor hrefs resolve to an existing element ID on the page', () => {
-  // Extract all href="#..." values from nav elements (desktop and mobile)
-  const navHrefs = [];
-  const navPattern = /<nav[\s\S]*?<\/nav>/g;
-  let navMatch;
-  while ((navMatch = navPattern.exec(html)) !== null) {
-    const hrefPattern = /href="#([\w-]+)"/g;
-    let hrefMatch;
-    while ((hrefMatch = hrefPattern.exec(navMatch[0])) !== null) {
-      navHrefs.push(hrefMatch[1]);
-    }
+test('All intra-page anchor hrefs resolve to an existing element ID on the page', () => {
+  // Match every href="#something" (skip bare href="#" — that just means scroll-to-top)
+  const hrefPattern = /href="#([\w-]+)"/g;
+  const seen = new Set();
+  let match;
+  while ((match = hrefPattern.exec(html)) !== null) {
+    seen.add(match[1]);
   }
-  assert.ok(navHrefs.length > 0, 'No anchor hrefs found in nav elements');
-  navHrefs.forEach(id => {
+  assert.ok(seen.size > 0, 'No intra-page anchor hrefs found');
+  seen.forEach(id => {
     assert.ok(
       html.includes(`id="${id}"`),
-      `Navbar links to #${id} but no element with id="${id}" exists on the page`
+      `Page links to #${id} but no element with id="${id}" exists`
     );
   });
 });
