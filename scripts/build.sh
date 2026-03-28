@@ -41,23 +41,25 @@ copy_if_exists "404.html"
 copy_if_exists "assets"
 
 echo ""
-echo "==> Inlining Tailwind CSS into HTML files..."
+echo "==> Inlining Tailwind CSS and stamping commit SHA into HTML files..."
 CSS_CONTENT="$(cat "$REPO_ROOT/assets/css/tailwind.css")"
+COMMIT_SHA="$(git -C "$REPO_ROOT" rev-parse --short HEAD 2>/dev/null || echo "unknown")"
 for html_file in "$DIST/index.html" "$DIST/404.html"; do
   if [ -f "$html_file" ]; then
-    # Replace <link rel="stylesheet" href="/assets/css/tailwind.css" /> with inline <style>
-    python3 - "$html_file" "$CSS_CONTENT" <<'PYEOF'
+    python3 - "$html_file" "$CSS_CONTENT" "$COMMIT_SHA" <<'PYEOF'
 import sys, pathlib
-path = pathlib.Path(sys.argv[1])
-css  = sys.argv[2]
+path       = pathlib.Path(sys.argv[1])
+css        = sys.argv[2]
+commit_sha = sys.argv[3]
 html = path.read_text()
 html = html.replace(
     '  <!-- Tailwind CSS (generated at build time) -->\n  <link rel="stylesheet" href="/assets/css/tailwind.css" />',
     f'  <style>{css}</style>'
 )
+html = html.replace('__COMMIT_SHA__', commit_sha)
 path.write_text(html)
 PYEOF
-    echo "    + inlined CSS into $(basename "$html_file")"
+    echo "    + inlined CSS and stamped commit $COMMIT_SHA into $(basename "$html_file")"
   fi
 done
 copy_if_exists "robots.txt"

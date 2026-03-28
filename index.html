@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maranto's Sewer &amp; Water Services LLC – 24/7 Emergency Service | Bloomingdale, IL</title>
   <meta name="description" content="Trusted sewer and water specialists serving Bloomingdale, IL and surrounding areas. Fast 24/7 response for leaks, drains, water heaters &amp; more. Call (630) 421-0091." />
+  <meta name="build-commit" content="__COMMIT_SHA__" />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7JVKFXNST"></script>
@@ -1068,8 +1069,10 @@
         var stored  = localStorage.getItem('theme');
         var sysDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
         var active  = document.documentElement.classList.contains('dark');
+        var commit  = (document.querySelector('meta[name="build-commit"]') || {}).content || 'dev';
         el.innerHTML =
           '<strong style="display:block;margin-bottom:6px;font-size:13px">🛠 Debug Toolbar</strong>' +
+          'Commit &nbsp;<b>' + commit + '</b><br>' +
           'System pref &nbsp;<b>' + (sysDark ? '🌙 dark' : '☀️ light') + '</b><br>' +
           'localStorage &nbsp;<b>' + (stored === null ? '(none)' : stored) + '</b><br>' +
           '&lt;html&gt; class &nbsp;<b>' + (active ? '🌙 dark' : '☀️ light') + '</b>' +
