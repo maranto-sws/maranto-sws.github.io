@@ -303,6 +303,127 @@ test('Emergency header #emergency-header exists', () => {
   contains('id="emergency-header"');
 });
 
+// ─── Icon Consistency ────────────────────────────────────────────────────────
+console.log('\nIcon Consistency');
+
+// Returns a stable fingerprint string for an SVG element's shape data
+// (all path `d` values and polyline `points` values, joined in order).
+function fingerprintSvg(svgContent) {
+  const parts = [];
+  const dRe = /\bd="([^"]+)"/g;
+  let m;
+  while ((m = dRe.exec(svgContent)) !== null) parts.push('d:' + m[1]);
+  const ptRe = /\bpoints="([^"]+)"/g;
+  while ((m = ptRe.exec(svgContent)) !== null) parts.push('pts:' + m[1]);
+  return parts.join('||');
+}
+
+// Collects fingerprints for every SVG found *inside* an <a href="…"> link
+// whose href attribute starts with `hrefPrefix`. Links with no inner SVG
+// are silently skipped (they carry no icon to check).
+function svgFingerprintsInLinks(hrefPrefix) {
+  const fps = [];
+  let pos = 0;
+  while (true) {
+    const linkStart = html.indexOf(`href="${hrefPrefix}`, pos);
+    if (linkStart === -1) break;
+    const linkEnd = html.indexOf('</a>', linkStart);
+    if (linkEnd === -1) break;
+    const svgStart = html.indexOf('<svg', linkStart);
+    if (svgStart !== -1 && svgStart < linkEnd) {
+      const svgEnd = html.indexOf('</svg>', svgStart);
+      if (svgEnd !== -1 && svgEnd < linkEnd) {
+        const fp = fingerprintSvg(html.slice(svgStart, svgEnd + 6));
+        if (fp) fps.push(fp);
+      }
+    }
+    pos = linkStart + 1;
+  }
+  return fps;
+}
+
+// Collects fingerprints for every SVG found immediately *before* each
+// occurrence of `markerText` (within `maxChars` characters).
+function svgFingerprintsBeforeText(markerText, maxChars) {
+  const fps = [];
+  let pos = 0;
+  while (true) {
+    const markerIdx = html.indexOf(markerText, pos);
+    if (markerIdx === -1) break;
+    const svgEnd = html.lastIndexOf('</svg>', markerIdx);
+    if (svgEnd !== -1 && markerIdx - svgEnd <= maxChars) {
+      const svgStart = html.lastIndexOf('<svg', svgEnd);
+      if (svgStart !== -1) {
+        const fp = fingerprintSvg(html.slice(svgStart, svgEnd + 6));
+        if (fp) fps.push(fp);
+      }
+    }
+    pos = markerIdx + 1;
+  }
+  return fps;
+}
+
+function assertAllSame(arr, label) {
+  const unique = [...new Set(arr)];
+  assert.strictEqual(
+    unique.length, 1,
+    `${label}: found ${unique.length} different icons across ${arr.length} instances`
+  );
+}
+
+// Logo: nav logo and footer logo must use the same SVG
+test('Nav logo and footer logo use the same SVG icon', () => {
+  // Nav logo — SVG sits inside the anchor with this aria-label
+  const navMarker = 'aria-label="Maranto\'s Sewer &amp; Water Services — back to top"';
+  const navIdx = html.indexOf(navMarker);
+  assert.ok(navIdx !== -1, 'Nav logo anchor not found');
+  const navLinkEnd  = html.indexOf('</a>', navIdx);
+  const navSvgStart = html.indexOf('<svg', navIdx);
+  assert.ok(navSvgStart !== -1 && navSvgStart < navLinkEnd, 'No SVG inside nav logo link');
+  const navSvgEnd = html.indexOf('</svg>', navSvgStart);
+  const navFp = fingerprintSvg(html.slice(navSvgStart, navSvgEnd + 6));
+
+  // Footer logo — SVG immediately precedes the brand-name span
+  const footMarker  = '>MARANTO\'S SEWER &amp; WATER<';
+  const footTextIdx = html.indexOf(footMarker);
+  assert.ok(footTextIdx !== -1, 'Footer brand-name span not found');
+  const footSvgEnd   = html.lastIndexOf('</svg>', footTextIdx);
+  assert.ok(footSvgEnd !== -1 && footTextIdx - footSvgEnd < 200,
+    'No SVG found immediately before footer brand name');
+  const footSvgStart = html.lastIndexOf('<svg', footSvgEnd);
+  const footFp = fingerprintSvg(html.slice(footSvgStart, footSvgEnd + 6));
+
+  assert.ok(navFp,  'Nav logo SVG has no path data');
+  assert.ok(footFp, 'Footer logo SVG has no path data');
+  assert.strictEqual(navFp, footFp,
+    'Nav logo and footer logo use different SVG icons — they must match');
+});
+
+// Phone icon: every tel: link that embeds an SVG must use the same icon
+test('All phone (tel:) links with icons use the same SVG', () => {
+  const fps = svgFingerprintsInLinks('tel:+16304210091');
+  assert.ok(fps.length >= 2,
+    `Expected ≥2 phone link icons (panic button + hero CTA + footer), found ${fps.length}`);
+  assertAllSame(fps, 'Phone icon (tel: links)');
+});
+
+// SMS icon: every sms: link that embeds an SVG must use the same icon
+test('All SMS (sms:) links with icons use the same SVG', () => {
+  const fps = svgFingerprintsInLinks('sms:+16304210091');
+  assert.ok(fps.length >= 2,
+    `Expected ≥2 SMS link icons (nav "Text Us" + footer "Text Us"), found ${fps.length}`);
+  assertAllSame(fps, 'SMS icon (sms: links)');
+});
+
+// Facebook badge: every "Recommends on Facebook" label must share the same SVG
+test('All "Recommends on Facebook" badges use the same SVG', () => {
+  const fps = svgFingerprintsBeforeText('Recommends on Facebook', 200);
+  const expectedCount = reviews.filter(r => !r.hidden).length;
+  assert.ok(fps.length >= expectedCount,
+    `Expected ${expectedCount} badge icons (one per visible review), found ${fps.length}`);
+  assertAllSame(fps, '"Recommends on Facebook" badge icon');
+});
+
 // ─── Summary ─────────────────────────────────────────────────────────────────
 const total = passed + failed;
 console.log(`\n${'─'.repeat(55)}`);
